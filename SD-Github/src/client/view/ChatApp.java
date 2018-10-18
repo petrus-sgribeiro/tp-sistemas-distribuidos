@@ -15,12 +15,10 @@ import javax.swing.JPanel;
 
 import common.ServerMessageInterface;
 import common.User;
-import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import server.dao.ChatDatabase;
 
 public class ChatApp extends JFrame {
 
@@ -57,6 +55,7 @@ public class ChatApp extends JFrame {
         insertActions();
         start();
         connect();
+       
     }
 
     public ServerMessageInterface getServer() {

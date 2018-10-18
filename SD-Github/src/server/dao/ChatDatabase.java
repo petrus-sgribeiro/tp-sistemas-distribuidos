@@ -30,6 +30,7 @@ public class ChatDatabase {
     public ChatDatabase() {
         createNewDatabase(DB_USERS);
         createTableUser();
+        createTableRelation();
     }
 
     public static void createNewDatabase(String db_name) {
@@ -255,13 +256,13 @@ public class ChatDatabase {
             System.out.println("----------------------");
         }
     }
-    
+
     private void createTableRelation() {
         Connection conn;
         Statement stmt;
         String sql = "CREATE TABLE IF NOT EXISTS relations(\n"
-                + "  email_primary VARCHAR(64) NOT NULL, \n"
-                + "  email_secondary VARCHAR(64) NOT NULL,\n"
+                + "  email_user VARCHAR(64) NOT NULL, \n"
+                + "  email_friend VARCHAR(64) NOT NULL\n"
                 + ");";
 
         try {
@@ -273,14 +274,15 @@ public class ChatDatabase {
             System.out.println(e.getMessage());
         }
     }
-     public boolean insertRelation(Relation relation) {
-        String sql = "INSERT INTO relation(email_primary,email_secondary) VALUES (?,?)";
+
+    public boolean insertRelation(Relation relation) {
+        String sql = "INSERT INTO relations(email_user,email_friend) VALUES (?,?)";
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL + DB_USERS);
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, relation.getEmail_primary());
-            pstmt.setString(2, relation.getEmail_secondary());
+            pstmt.setString(1, relation.getEmail_user());
+            pstmt.setString(2, relation.getEmail_friend());
             pstmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -289,9 +291,10 @@ public class ChatDatabase {
         }
         return true;
     }
-     public LinkedList<Relation> loadRelations() {
+
+    public LinkedList<Relation> loadRelations() {
         LinkedList<Relation> listR = new LinkedList<Relation>();
-        String sql = "SELECT email_primary,email_secondary FROM relations";
+        String sql = "SELECT email_user,email_friend FROM relations";
         Connection conn;
         Statement stmt;
         ResultSet rs;
@@ -300,24 +303,20 @@ public class ChatDatabase {
             conn = DriverManager.getConnection(DB_URL + DB_USERS);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            String email_primary, email_secondary, update;
-            Date created_at, updated_at = null;
+            String email_user, email_friend;
 
             while (rs.next()) {
-                email_primary = rs.getString("email_primary");
-                email_secondary = rs.getString("email_secondary");
-            
-  
-                listR.add(new Relation(email_primary,email_secondary,created_at, updated_at));
+                email_user = rs.getString("email_user");
+                email_friend = rs.getString("email_friend");
+
+                listR.add(new Relation(email_user, email_friend));
             }
             conn.close();
+
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
 
         return listR;
     }
-    }
-
+}

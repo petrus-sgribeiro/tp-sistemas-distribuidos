@@ -30,7 +30,8 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
     public static final int REGISTER_EXISTS_MATRICULA = 4;
 
     public static final int REGISTER_RELATION_EXISTS = 5;
-    
+    public static final int REGISTER_FRIEND_ADD_SUCCESSFULLY = 6;
+
     public static final int PORT = 1099;
     private LinkedList<Message> messages;
     private ChatDatabase chatDatabase;
@@ -42,7 +43,7 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
     }
 
     @Override
-    public int registerUser(User user) throws RemoteException {
+    public synchronized int registerUser(User user) throws RemoteException {
 
         LinkedList<User> users = chatDatabase.loadUsers();
 
@@ -61,8 +62,8 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
         Date date = new Date();
 
         if (chatDatabase.insertUser(user)) {
-            System.out.println("Usuario '"+user.getEmail()+"' cadastrado com sucesso!");
-            LogInfo.add("Usuario '"+user.getEmail()+"' cadastrado com sucesso!");
+            System.out.println("Usuario '" + user.getEmail() + "' cadastrado com sucesso!");
+            LogInfo.add("Usuario '" + user.getEmail() + "' cadastrado com sucesso!");
             return 0;
         } else {
             return -1;
@@ -95,8 +96,8 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
 
         if (tmp != null) {
             if (tmp.isOnline() && tmp.getPassword().equals(password)) {
-                LogInfo.add("ERRO - Tentativa de login em: '"+email+"'. MOTIVO: Usuario já está ONLINE!");
-                System.out.println("ERRO - Tentativa de login em: '"+email+"'. MOTIVO: Usuario já está ONLINE!");
+                LogInfo.add("ERRO - Tentativa de login em: '" + email + "'. MOTIVO: Usuario já está ONLINE!");
+                System.out.println("ERRO - Tentativa de login em: '" + email + "'. MOTIVO: Usuario já está ONLINE!");
                 return LOGIN_ERROR_USER_ONLINE;
             } else if (tmp.getPassword().equals(password)) {
                 tmp.setOnline(true);
@@ -106,8 +107,8 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
                 return LOGIN_SUCCESS;
             }
         }
-        LogInfo.add("ERRO - Tentativa de login em: '"+email+"'. MOTIVO: Usuário ou Senha incorretos!");
-        System.out.println("ERRO - Tentativa de login em: '"+email+"'. MOTIVO: Usuário ou Senha incorretos!");
+        LogInfo.add("ERRO - Tentativa de login em: '" + email + "'. MOTIVO: Usuário ou Senha incorretos!");
+        System.out.println("ERRO - Tentativa de login em: '" + email + "'. MOTIVO: Usuário ou Senha incorretos!");
         return LOGIN_ERROR_WRONG;
     }
 
@@ -140,55 +141,73 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
 
         return 0;
     }
-    
+
     @Override
-    public int disconnectAll() throws RemoteException
-    {
+    public synchronized int disconnectAll() throws RemoteException {
         LogInfo.add("Todos usuários foram desconectados do servidor!");
         System.out.println("Todos usuários foram desconectados do servidor!");
-        
+
         LinkedList<User> users = chatDatabase.loadUsers();
-        for(User user: users)
-        {
+        for (User user : users) {
             user.setOnline(false);
             chatDatabase.updateUser(user);
         }
         return 1;
     }
-    
+
     @Override
-    public synchronized User searchUsers(String email){
-    
+    public synchronized User searchUsers(String email) throws RemoteException{
+
         User tmp = chatDatabase.getUser(email);
-        
-        if(tmp!=null){
+
+        if (tmp != null) {
             return tmp;
         }
-        
+
         return null;
     }
-    
+
     @Override
-    public synchronized int registerRelation(Relation relation)
-    {
+    public synchronized int registerRelation(Relation relation) {
         LinkedList<Relation> relations = chatDatabase.loadRelations();
 
         for (Relation r : relations) {
-            if (r.getEmail_primary().equals(relation.getEmail_primary()) && r.getEmail_secondary().equals(relation.getEmail_secondary())) {
+            if (r.getEmail_user().equals(relation.getEmail_user()) && r.getEmail_friend().equals(relation.getEmail_friend())) {
                 return REGISTER_RELATION_EXISTS;
-                }}
-
-        Date date = new Date();
+            }
+        }
 
         if (chatDatabase.insertRelation(relation)) {
-            System.out.println("adicionado com sucesso!");
-            LogInfo.add("cadastrado com sucesso!");
-            return 0;
+            System.out.println("Foi criada uma amizade entre '"+relation.getEmail_user()+"' e '" + relation.getEmail_friend() + "'.");
+            LogInfo.add("Foi criada uma amizade entre '"+relation.getEmail_user()+"' e '" + relation.getEmail_friend() + "'.");
+            return REGISTER_FRIEND_ADD_SUCCESSFULLY;
         } else {
-            return -1;
+            return 0;
         }
-    
-    
+    }
+
+    @Override
+    public synchronized LinkedList<Relation> getAllFriendships(String email, String pass) throws RemoteException
+    {
+       User user =  chatDatabase.getUser(email, pass);
+       if(user == null) return null;
+       else
+       {
+           LinkedList<Relation> relations = chatDatabase.loadRelations();
+           LinkedList<Relation> friendships = new LinkedList<Relation>();
+           
+           for(Relation r : relations)
+           {
+               if(r.getEmail_user().equals(email))
+               {
+                   friendships.add(new Relation(email,r.getEmail_friend()));
+               }
+           }
+           
+           return friendships;
+       }
     }
     
+    
+
 }

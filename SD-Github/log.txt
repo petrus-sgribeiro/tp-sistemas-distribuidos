@@ -195,3 +195,66 @@
 [13:30:39] O usuario 'teste2@gmail.com' está OFFLINE!
 [13:30:53] O usuario 'teste2@gmail.com' está ONLINE!
 [13:31:6] O usuario 'teste2@gmail.com' está OFFLINE!
+[17:50:44] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[17:52:15] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[17:52:38] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[17:53:50] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[17:54:8] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[17:55:19] ERRO - Tentativa de login em: 'fagundesjg@outlook.com'. MOTIVO: Usuario já está ONLINE!
+[17:57:37] Todos usuários foram desconectados do servidor!
+[17:57:43] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:0:15] Todos usuários foram desconectados do servidor!
+[18:1:4] Usuario 'fagundesjg@outlook.com' cadastrado com sucesso!
+[18:2:20] Usuario 'larissa.e.dornelas@gmail.com' cadastrado com sucesso!
+[18:2:29] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:2:40] Foi criada uma amizade entre 'fagundesjg@outlook.com' e 'larissa.e.dornelas@gmail.com'.
+[18:4:9] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:4:52] Todos usuários foram desconectados do servidor!
+[18:5:28] Usuario 'vividuarte31@gmail.com' cadastrado com sucesso!
+[18:5:35] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:5:46] Foi criada uma amizade entre 'fagundesjg@outlook.com' e 'vividuarte31@gmail.com'.
+[18:9:23] Todos usuários foram desconectados do servidor!
+[18:9:29] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:9:36] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:10:6] Todos usuários foram desconectados do servidor!
+[18:10:15] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:10:47] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:13:4] Todos usuários foram desconectados do servidor!
+[18:13:9] Todos usuários foram desconectados do servidor!
+[18:13:28] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:13:33] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:14:51] Todos usuários foram desconectados do servidor!
+[18:14:58] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:15:31] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:17:10] Todos usuários foram desconectados do servidor!
+[18:17:16] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:18:17] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:37:24] Todos usuários foram desconectados do servidor!
+[18:37:30] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:38:48] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:38:56] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:41:18] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:45:29] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:45:46] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:47:38] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:48:1] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:49:10] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:50:40] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:50:47] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:51:11] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:51:19] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:51:27] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:53:26] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:53:35] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:54:30] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:54:44] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:57:32] ERRO - Tentativa de login em: 'fagundesjg@outlook.com'. MOTIVO: Usuário ou Senha incorretos!
+[18:57:36] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[18:58:52] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[18:58:58] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[19:0:22] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[19:0:36] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[19:3:42] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[19:7:15] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[19:7:38] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[19:9:1] O usuario 'fagundesjg@outlook.com' está ONLINE!

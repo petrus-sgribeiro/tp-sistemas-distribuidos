@@ -17,6 +17,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -26,21 +27,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.MatteBorder;
 
 public class viewApp extends JPanel {
+
     private static final int SELECTED_EXIT = 1;
     private static final int SELECTED_CHAT = 2;
     private static final int SELECTED_GROUP = 3;
     private static final int SELECTED_CONFIG = 4;
     private static final int SELECTED_FRIENDS = 5;
-    
+
     private ChatApp chat;
     private User user;
-    
-    
-    private JLabel line;
-    
+
+    private JLabel line, line_add_friend;
+
     /* Components das configurações */
     private JPanel panel_configs;
     private JButton jb_cvsas;
@@ -50,27 +50,25 @@ public class viewApp extends JPanel {
     private JButton jb_sair;
     private JButton jb_user_config;
     private JButton jb_search_addfriend;
-    
-   
 
     /* Componentes das configurações do painel de amigos */
     private JPanel panel_friends;
     private JTextField input_search;
-   
+
     private JButton jb_addFriend;
     private JLabel lb_friends_title;
-    
-  /* Componentes das configurações do painel de adicionar amigos */   
+
+    /* Componentes das configurações do painel de adicionar amigos */
     private JPanel panel_addfriend;
     private JTextField input_addfriend;
     private JButton jb_close_addfriend;
     private JLabel lb_addfriend;
-    
+
     private JLabel lb_friend_img_perf;
     private JLabel lb_friend_found;
     private JButton jb_add_friend_found;
     private JLabel lb_not_found;
-    
+
     private JPanel panel_chat;
 
     public viewApp(ChatApp chat) {
@@ -96,13 +94,14 @@ public class viewApp extends JPanel {
         input_search = new JTextField();
         input_addfriend = new JTextField();
         jb_addFriend = new JButton("+");
-        jb_close_addfriend = new JButton ("x");
-        jb_search_addfriend= new JButton("");
+        jb_close_addfriend = new JButton("x");
+        jb_search_addfriend = new JButton("");
         line = new JLabel();
-        lb_friends_title = new JLabel("Conversas Recentes",SwingConstants.CENTER);
-        lb_addfriend  =new JLabel("Busque pelo e-mail",SwingConstants.LEFT);
-        lb_friend_found=new JLabel();
-        lb_friend_img_perf= new JLabel();
+        line_add_friend = new JLabel();
+        lb_friends_title = new JLabel("Conversas Recentes", SwingConstants.CENTER);
+        lb_addfriend = new JLabel("Busque pelo e-mail", SwingConstants.LEFT);
+        lb_friend_found = new JLabel();
+        lb_friend_img_perf = new JLabel();
         jb_add_friend_found = new JButton("+");
         lb_not_found = new JLabel();
     }
@@ -118,18 +117,18 @@ public class viewApp extends JPanel {
         c.gridx = 1;
         c.weightx = 0.25;
         c.weighty = 1.0;
-        this.add(panel_friends,c);
+        this.add(panel_friends, c);
         c.gridx = 2;
         c.weightx = 0.6875;
         this.add(panel_chat, c);
         c.gridx = 1;
         c.weightx = 0.25;
         c.weighty = 1.0;
-        this.add(panel_addfriend,c);
-        
+        this.add(panel_addfriend, c);
+
         /* CONFIGURAÇAO DO PAINEL DE CONFIGURAÇÃO */
         panel_configs.setBackground(ChatApp.PRIMARY_DARK);
-        panel_configs.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1,ChatApp.SECONDARY_GRAY));
+        panel_configs.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, ChatApp.SECONDARY_GRAY));
         panel_configs.setLayout(null);
 
         jb_cvsas.setBounds(0, 300, 75, 50);
@@ -170,60 +169,76 @@ public class viewApp extends JPanel {
         /* CONFIGURAÇÃO DO PAINEL DE AMIGOS */
         panel_friends.setBackground(ChatApp.PRIMARY_DARK);
         panel_friends.setLayout(null);
-        
+
         input_search.setBounds(10, 20, 240, 30);
-        input_search.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+        input_search.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
         input_search.setBackground(ChatApp.SECONDARY_GRAY);
         input_search.setForeground(Color.white);
-        line.setBounds(0,70,320,1);
-        line.setBorder(BorderFactory.createMatteBorder(0, 0,1,0,ChatApp.SECONDARY_GRAY));
+        input_search.setCaretColor(Color.white);
+
+        line.setBounds(0, 70, 320, 1);
+        line.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ChatApp.SECONDARY_GRAY));
+
+        line_add_friend.setBounds(0, 70, 320, 1);
+        line_add_friend.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, ChatApp.SECONDARY_GRAY));
+
         jb_addFriend.setBackground(ChatApp.SECONDARY_GRAY);
         jb_addFriend.setForeground(Color.white);
         jb_addFriend.setBounds(265, 20, 35, 30);
         jb_addFriend.setFocusable(false);
-        jb_addFriend.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        lb_friends_title.setFont(new Font("Impact",Font.PLAIN,25));
-        lb_friends_title.setBounds(10,75,300,40);
+        jb_addFriend.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
+        lb_friends_title.setFont(new Font("Impact", Font.PLAIN, 25));
+        lb_friends_title.setBounds(10, 75, 300, 40);
         lb_friends_title.setForeground(ChatApp.SECONDARY_GREEN);
-        
+
         panel_friends.add(input_search);
         panel_friends.add(line);
         panel_friends.add(jb_addFriend);
         panel_friends.add(lb_friends_title);
-        
+
         panel_addfriend.setBackground(ChatApp.PRIMARY_DARK);
         panel_addfriend.setLayout(null);
-        
+        panel_addfriend.add(line_add_friend);
+
         input_addfriend.setBounds(10, 90, 240, 30);
-        input_addfriend.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+        input_addfriend.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
         input_addfriend.setBackground(ChatApp.SECONDARY_GRAY);
-        input_addfriend.setForeground(Color.white);  
-        jb_search_addfriend.setBounds(258,90,35,30);
+        input_addfriend.setForeground(Color.white);
+        input_addfriend.setCaretColor(Color.white);
+
+        jb_search_addfriend.setBounds(258, 90, 35, 30);
         jb_search_addfriend.setBackground(ChatApp.PRIMARY_DARK);
         jb_search_addfriend.setFocusable(false);
         jb_search_addfriend.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jb_search_addfriend.setIcon(new ImageIcon("icones/search_.png"));
+
         jb_close_addfriend.setBackground(ChatApp.SECONDARY_GRAY);
         jb_close_addfriend.setForeground(Color.white);
         jb_close_addfriend.setBounds(265, 20, 35, 30);
         jb_close_addfriend.setFocusable(false);
-        jb_close_addfriend.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        lb_addfriend.setFont(new Font("serif",Font.PLAIN,20));
-        lb_addfriend.setBounds(10,20,300,40);
+        jb_close_addfriend.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
+        lb_addfriend.setBounds(10, 20, 300, 40);
         lb_addfriend.setForeground(ChatApp.SECONDARY_GREEN);
-        lb_friend_found.setBounds(60,140,240,30);
-        lb_friend_found.setForeground(Color.white);  
-        lb_friend_found.setFont(new Font("Arial",Font.PLAIN,18));
-        lb_friend_img_perf.setBounds(10,140,40,40);
-        jb_add_friend_found.setBounds(258,150,35,30);
+        lb_addfriend.setFont(new Font("Impact", Font.PLAIN, 23));
+
+        lb_friend_found.setBounds(60, 140, 240, 30);
+        lb_friend_found.setForeground(Color.white);
+        lb_friend_found.setFont(new Font("Arial", Font.PLAIN, 18));
+
+        lb_friend_img_perf.setBounds(10, 140, 40, 40);
+
+        jb_add_friend_found.setBounds(258, 150, 35, 30);
         jb_add_friend_found.setBackground(ChatApp.SECONDARY_GRAY);
         jb_add_friend_found.setForeground(Color.white);
         jb_add_friend_found.setFocusable(false);
-        jb_add_friend_found.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        lb_not_found.setBounds(60,140,240,30);
-        lb_not_found.setFont(new Font("Arial",Font.ITALIC + Font.BOLD,13));
+        jb_add_friend_found.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
+        lb_not_found.setBounds(60, 140, 240, 30);
+        lb_not_found.setFont(new Font("Arial", Font.ITALIC + Font.BOLD, 13));
         lb_not_found.setForeground(ChatApp.WARNING_COLOR);
-        
+
         panel_addfriend.add(input_addfriend);
         panel_addfriend.add(jb_close_addfriend);
         panel_addfriend.add(lb_addfriend);
@@ -232,19 +247,15 @@ public class viewApp extends JPanel {
         panel_addfriend.add(lb_friend_img_perf);
         panel_addfriend.add(jb_add_friend_found);
         panel_addfriend.add(lb_not_found);
-        
+
         jb_add_friend_found.setVisible(false);
         lb_friend_img_perf.setVisible(false);
         lb_friend_found.setVisible(false);
         lb_not_found.setVisible(false);
         panel_addfriend.setVisible(false);
-        
 
-        
         /* CONFIGURAÇÃO DO PAINEL DE CHAT */
         panel_chat.setBackground(Color.GREEN);
-
-        
     }
 
     private void setDefaultColors() {
@@ -288,14 +299,14 @@ public class viewApp extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 jb_sair.setBackground(ChatApp.SECONDARY_GRAY);
-                jb_sair.setBorder(BorderFactory.createMatteBorder(0,7,0,0,ChatApp.SECONDARY_GREEN));
+                jb_sair.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 setDefaultColors();
                 jb_sair.setBackground(ChatApp.PRIMARY_DARK);
-                jb_sair.setBorder(BorderFactory.createMatteBorder(0,0,0,0,ChatApp.PRIMARY_GREEN));
+                jb_sair.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.PRIMARY_GREEN));
             }
         });
 
@@ -468,19 +479,18 @@ public class viewApp extends JPanel {
                 jb_cvsas.setBackground(ChatApp.PRIMARY_DARK);
             }
         });
-    
-          jb_addFriend.addActionListener(new ActionListener() {
+
+        jb_addFriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                     
-                     panel_friends.setVisible(false);
-                     panel_addfriend.setVisible(true);
+
+                panel_friends.setVisible(false);
+                panel_addfriend.setVisible(true);
             }
-            
-       
-            });
-          
-          jb_addFriend.addMouseListener(new MouseListener() {
+
+        });
+
+        jb_addFriend.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
@@ -498,32 +508,31 @@ public class viewApp extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-               
+
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                
+
             }
         });
-          
-          jb_close_addfriend.addActionListener(new ActionListener() {
+
+        jb_close_addfriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                     
-                     input_addfriend.setText("");
-                     panel_friends.setVisible(true);
-                     panel_addfriend.setVisible(false);
-                     jb_add_friend_found.setVisible(false);
-                     lb_friend_img_perf.setVisible(false);
-                     lb_friend_found.setVisible(false);
-                     lb_not_found.setVisible(false);
+
+                input_addfriend.setText("");
+                panel_friends.setVisible(true);
+                panel_addfriend.setVisible(false);
+                jb_add_friend_found.setVisible(false);
+                lb_friend_img_perf.setVisible(false);
+                lb_friend_found.setVisible(false);
+                lb_not_found.setVisible(false);
             }
-            
-       
-            });
-           
-          jb_close_addfriend.addMouseListener(new MouseListener() {
+
+        });
+
+        jb_close_addfriend.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
@@ -541,15 +550,16 @@ public class viewApp extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-               
+
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                
+
             }
         });
-           input_addfriend.addKeyListener(new KeyListener() {
+
+        input_addfriend.addKeyListener(new KeyListener() {
 
             @Override
             public void keyTyped(KeyEvent e) {
@@ -564,68 +574,92 @@ public class viewApp extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                   jb_search_addfriend.doClick();
+                    jb_search_addfriend.doClick();
                 }
             }
         });
 
-          
-          jb_search_addfriend.addActionListener(new ActionListener() {
+        jb_search_addfriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               String email = input_addfriend.getText().toString();
+
+                String email = input_addfriend.getText().toString();
+                LinkedList<Relation> friendships = null;
+                boolean found = false;
+                User newfriend = null;
+
                 try {
-                    User newfriend = chat.getServer().searchUsers(email);
-                    if(newfriend != null){
+                    friendships = chat.getServer().getAllFriendships(user.getEmail(), user.getPassword());
+                    newfriend = chat.getServer().searchUsers(email);
+                } catch (RemoteException ex) {
+                    System.out.println("Excessão search add friend!");
+                }
+
+                if (!email.equals(user.getEmail())) {
+                    if (newfriend != null) {
+                        for (Relation r : friendships) {
+                            if (r.getEmail_user().equals(user.getEmail()) && r.getEmail_friend().equals(newfriend.getEmail())) {
+                                found = true;
+                            }
+                        }
+                        if (found) {
                             lb_not_found.setVisible(false);
                             lb_friend_img_perf.setIcon(new ImageIcon("icones/galgadot_.jpg"));
                             lb_friend_found.setText(newfriend.getNickname());
                             jb_add_friend_found.setVisible(true);
                             lb_friend_img_perf.setVisible(true);
                             lb_friend_found.setVisible(true);
-                            
-                      }
-                    else{
-                           lb_friend_img_perf.setVisible(false);
-                           lb_friend_found.setVisible(false);
-                           lb_friend_found.setVisible(false);
-                           jb_add_friend_found.setVisible(false);
-                           lb_not_found.setText("Usuário não encontrado!");
-                           lb_not_found.setVisible(true);
+                            jb_add_friend_found.setText("");
+                            jb_add_friend_found.setBackground(ChatApp.PRIMARY_DARK);
+                            jb_add_friend_found.setIcon(new ImageIcon("icones/ok_.png"));
+                            jb_add_friend_found.setEnabled(false);
+                        } else if (newfriend != null) {
+                            lb_not_found.setVisible(false);
+                            lb_friend_img_perf.setIcon(new ImageIcon("icones/galgadot_.jpg"));
+                            lb_friend_found.setText(newfriend.getNickname());
+                            jb_add_friend_found.setVisible(true);
+                            lb_friend_img_perf.setVisible(true);
+                            lb_friend_found.setVisible(true);
+
+                        }
+                    } else {
+                        lb_friend_img_perf.setVisible(false);
+                        lb_friend_found.setVisible(false);
+                        jb_add_friend_found.setVisible(false);
+                        lb_not_found.setText("Usuário não encontrado!");
+                        lb_not_found.setVisible(true);
                     }
-                    } catch (RemoteException ex) {
-                    Logger.getLogger(viewApp.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
             }
-            
-       
-            });
-          
-          
+
+        });
+
         jb_add_friend_found.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               Relation relation=new Relation();
-               
-               relation.setEmail_primary(user.getEmail());
-               relation.setEmail_secondary(input_addfriend.getText().toString());
-            try {
-                        switch (chat.getServer().registerRelation(relation)) {
-                            case 0:
-                                jb_add_friend_found.setText(">");
-                                break;
-                            case ServerMessage.REGISTER_RELATION_EXISTS:
-                                JOptionPane.showMessageDialog(null, "Erro ao cadastrar, já existe alguem com este e-mail!");
-                                break;
-                            default:
-                                JOptionPane.showMessageDialog(null, "Erro ao cadastrar!!!");
-                                break;
-                        }
-                    } catch (RemoteException ex) {
-                        System.out.println("RegisterUser - Exception: " + ex.getMessage());
+                Relation relation = new Relation();
+
+                relation.setEmail_user(user.getEmail());
+                relation.setEmail_friend(input_addfriend.getText().toString());
+
+                try {
+                    switch (chat.getServer().registerRelation(relation)) {
+                        case ServerMessage.REGISTER_FRIEND_ADD_SUCCESSFULLY:
+                            jb_add_friend_found.setText("");
+                            jb_add_friend_found.setBackground(ChatApp.PRIMARY_DARK);
+                            jb_add_friend_found.setIcon(new ImageIcon("icones/ok_.png"));
+                            break;
+                        case ServerMessage.REGISTER_RELATION_EXISTS:
+                            JOptionPane.showMessageDialog(null, "Erro ao adicionar, você já tem esse amigo adicionado!");
+                            break;
+                        default:
+                            JOptionPane.showMessageDialog(null, "Erro ao adicionar!!!");
+                            break;
                     }
+                } catch (RemoteException ex) {
+                    System.out.println("RegisterUser - Exception: " + ex.getMessage());
+                }
             }
-            });
-}
+        });
+    }
 }

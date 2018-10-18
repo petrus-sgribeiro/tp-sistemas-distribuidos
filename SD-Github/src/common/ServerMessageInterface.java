@@ -5,8 +5,6 @@
  */
 package common;
 
-import common.Message;
-import common.User;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
@@ -25,4 +23,5 @@ public interface ServerMessageInterface extends Remote{
     public abstract int disconnectAll() throws RemoteException;
     public abstract User searchUsers(String email) throws RemoteException;
     public abstract int registerRelation (Relation relation) throws RemoteException;
+    public abstract LinkedList<Relation> getAllFriendships(String email, String pass) throws RemoteException;
 }

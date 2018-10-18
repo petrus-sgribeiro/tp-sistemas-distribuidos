@@ -6,7 +6,6 @@
 package common;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
@@ -14,85 +13,30 @@ import java.util.Date;
  */
 public class Relation implements Serializable {
 
-    private String email_primary;
-    private String email_secondary;
-    private Date created_at;
-    private Date updated_at;
+    private String email_user;
+    private String email_friend;
 
-    public Relation(String email_primary, String email_secondary, Date created_at, Date updated_at) {
-        this.email_primary = email_primary;
-        this.email_secondary = email_secondary;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+    public Relation(String email_user, String email_friend) {
+        this.email_user = email_user;
+        this.email_friend = email_friend;
     }
 
     public Relation() {
-        this.email_primary = null;
-        this.email_secondary = null;
-        this.created_at = null;
-        this.updated_at = null;
     }
 
-
-    /**
-     * @return the email_primary
-     */
-    public String getEmail_primary() {
-        return email_primary;
+    public String getEmail_user() {
+        return email_user;
     }
 
-    /**
-     * @param email_primary the email_primary to set
-     */
-    public void setEmail_primary(String email_primary) {
-        this.email_primary = email_primary;
+    public void setEmail_user(String email_user) {
+        this.email_user = email_user;
     }
 
-    /**
-     * @return the email_secondary
-     */
-    public String getEmail_secondary() {
-        return email_secondary;
+    public String getEmail_friend() {
+        return email_friend;
     }
 
-    /**
-     * @param email_secondary the email_secondary to set
-     */
-    public void setEmail_secondary(String email_secondary) {
-        this.email_secondary = email_secondary;
+    public void setEmail_friend(String email_friend) {
+        this.email_friend = email_friend;
     }
-
-    /**
-     * @return the created_at
-     */
-    public Date getCreated_at() {
-        return created_at;
-    }
-
-    /**
-     * @param created_at the created_at to set
-     */
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
-    }
-
-    /**
-     * @return the updated_at
-     */
-    public Date getUpdated_at() {
-        return updated_at;
-    }
-
-    /**
-     * @param updated_at the updated_at to set
-     */
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
-    }
-
-
-
-  
-
-
 }
