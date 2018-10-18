@@ -25,7 +25,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 public class viewApp extends JPanel {
@@ -53,6 +55,8 @@ public class viewApp extends JPanel {
 
     /* Componentes das configurações do painel de amigos */
     private JPanel panel_friends;
+    private JPanel panel_talks;
+    private JScrollPane scroll_talks;
     private JTextField input_search;
 
     private JButton jb_addFriend;
@@ -98,12 +102,14 @@ public class viewApp extends JPanel {
         jb_search_addfriend = new JButton("");
         line = new JLabel();
         line_add_friend = new JLabel();
-        lb_friends_title = new JLabel("Conversas Recentes", SwingConstants.CENTER);
+        lb_friends_title = new JLabel("Conversas", SwingConstants.CENTER);
         lb_addfriend = new JLabel("Busque pelo e-mail", SwingConstants.LEFT);
         lb_friend_found = new JLabel();
         lb_friend_img_perf = new JLabel();
         jb_add_friend_found = new JButton("+");
         lb_not_found = new JLabel();
+        panel_talks = new JPanel();
+        scroll_talks = new JScrollPane(panel_talks,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
     private void configComponents() {
@@ -253,6 +259,19 @@ public class viewApp extends JPanel {
         lb_friend_found.setVisible(false);
         lb_not_found.setVisible(false);
         panel_addfriend.setVisible(false);
+        
+        panel_friends.add(panel_talks);
+        /*panel_talks.setBounds(0,115,315,576);
+        panel_talks.setBackground(Color.PINK);
+        panel_talks.setBorder(BorderFactory.createMatteBorder(5,5 ,5,5, Color.yellow));*/
+        
+        scroll_talks.setLayout(null);
+        scroll_talks.setBounds(0,115,315,576);
+        scroll_talks.setBackground(Color.PINK);
+        scroll_talks.setBorder(BorderFactory.createMatteBorder(5,5 ,5,5, Color.yellow));
+        panel_talks.add(new viewTalk(user));
+        
+        panel_friends.add(scroll_talks);
 
         /* CONFIGURAÇÃO DO PAINEL DE CHAT */
         panel_chat.setBackground(Color.GREEN);
