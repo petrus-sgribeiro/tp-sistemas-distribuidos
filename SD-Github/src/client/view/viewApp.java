@@ -9,6 +9,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
 import common.User;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,10 +30,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingConstants;
 
 public class viewApp extends JPanel {
-
+    
+    public static final Dimension DIMENSION_TALKS = new Dimension(315,576);
+    
     private static final int SELECTED_EXIT = 1;
     private static final int SELECTED_CHAT = 2;
     private static final int SELECTED_GROUP = 3;
@@ -109,7 +114,7 @@ public class viewApp extends JPanel {
         jb_add_friend_found = new JButton("+");
         lb_not_found = new JLabel();
         panel_talks = new JPanel();
-        scroll_talks = new JScrollPane(panel_talks,ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll_talks = new JScrollPane(panel_talks);
     }
 
     private void configComponents() {
@@ -260,15 +265,37 @@ public class viewApp extends JPanel {
         lb_not_found.setVisible(false);
         panel_addfriend.setVisible(false);
         
-        panel_friends.add(panel_talks);
-        /*panel_talks.setBounds(0,115,315,576);
+        panel_talks.setLayout(new FlowLayout(FlowLayout.CENTER));
+        panel_talks.setBounds(0,115,315,576);
         panel_talks.setBackground(Color.PINK);
-        panel_talks.setBorder(BorderFactory.createMatteBorder(5,5 ,5,5, Color.yellow));*/
+        panel_talks.setBorder(BorderFactory.createMatteBorder(5,5 ,5,5, Color.yellow));
+        panel_talks.setVisible(true);
         
-        scroll_talks.setLayout(null);
+        scroll_talks.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scroll_talks.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll_talks.setBounds(0,115,315,576);
-        scroll_talks.setBackground(Color.PINK);
-        scroll_talks.setBorder(BorderFactory.createMatteBorder(5,5 ,5,5, Color.yellow));
+        scroll_talks.setBackground(Color.red);
+        scroll_talks.setVisible(true);
+        
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
+        panel_talks.add(new viewTalk(user));
         panel_talks.add(new viewTalk(user));
         
         panel_friends.add(scroll_talks);

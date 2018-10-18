@@ -50,10 +50,10 @@ public class viewTalk extends JPanel{
     
     private void configComponents()
     {
-        this.setBackground(Color.red);
-        this.setLayout(null);
-        this.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.gray));
         this.setPreferredSize(new Dimension(315,50));
+        this.setBackground(Color.red);
+        this.setBorder(BorderFactory.createMatteBorder(5,5 ,5,5, Color.WHITE));
+        //this.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.gray));
         this.setVisible(true);
     }
     
