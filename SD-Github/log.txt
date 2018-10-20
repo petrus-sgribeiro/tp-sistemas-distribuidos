@@ -565,3 +565,13 @@
 [12:12:17] O usuario 'daniel@gmail.com' está ONLINE!
 [12:12:53] Foi criada uma amizade entre 'daniel@gmail.com' e 'teste3@gmail.com'.
 [12:13:24] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:17:2] O usuario 'daniel@gmail.com' está ONLINE!
+[12:21:24] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:21:36] O usuario 'daniel@gmail.com' está ONLINE!
+[12:21:48] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:27:4] O usuario 'daniel@gmail.com' está ONLINE!
+[12:27:26] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:29:13] O usuario 'daniel@gmail.com' está ONLINE!
+[12:31:58] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:32:11] O usuario 'daniel@gmail.com' está ONLINE!
+[12:32:29] O usuario 'daniel@gmail.com' está OFFLINE!
