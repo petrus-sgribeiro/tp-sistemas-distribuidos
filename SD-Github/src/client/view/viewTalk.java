@@ -80,7 +80,7 @@ public class viewTalk extends JPanel{
         user_name.setBounds(60,5, 200,20);
         user_name.setFont(new Font("Microsoft Tai Le",Font.PLAIN,16));
         user_name.setForeground(Color.white);
-        user_name.setText("Dinho Duarte");
+        user_name.setText(user.getNickname());
         
         user_description.setBounds(60,30,200,20);
         user_description.setFont(new Font("Microsoft Tai Le",Font.PLAIN,12));

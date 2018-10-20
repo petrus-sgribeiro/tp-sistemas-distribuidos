@@ -495,3 +495,73 @@
 [21:55:19] Todos usuários foram desconectados do servidor!
 [21:55:35] O usuario 'fagundesjg@outlook.com' está ONLINE!
 [21:57:14] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[9:58:59] Usuario 'daniel@gmail.com' cadastrado com sucesso!
+[9:59:11] O usuario 'daniel@gmail.com' está ONLINE!
+[9:59:33] Foi criada uma amizade entre 'daniel@gmail.com' e 'teste@gmail.com'.
+[9:59:50] Foi criada uma amizade entre 'daniel@gmail.com' e 'milena@gmail.com'.
+[10:0:37] O usuario 'daniel@gmail.com' está OFFLINE!
+[10:22:11] O usuario 'daniel@gmail.com' está ONLINE!
+[10:58:10] O usuario 'daniel@gmail.com' está OFFLINE!
+[10:58:22] O usuario 'daniel@gmail.com' está ONLINE!
+[10:59:34] O usuario 'daniel@gmail.com' está OFFLINE!
+[10:59:51] O usuario 'daniel@gmail.com' está ONLINE!
+[11:0:29] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:3:10] O usuario 'daniel@gmail.com' está ONLINE!
+[11:5:17] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:5:39] O usuario 'daniel@gmail.com' está ONLINE!
+[11:6:14] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:10:35] O usuario 'daniel@gmail.com' está ONLINE!
+[11:11:14] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:12:23] O usuario 'daniel@gmail.com' está ONLINE!
+[11:13:23] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:18:27] O usuario 'daniel@gmail.com' está ONLINE!
+[11:18:42] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:18:49] ERRO - Tentativa de login em: 'teste@gmail.com'. MOTIVO: Usuario já está ONLINE!
+[11:18:54] O usuario 'daniel@gmail.com' está ONLINE!
+[11:21:14] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:22:16] O usuario 'daniel@gmail.com' está ONLINE!
+[11:22:34] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:23:24] O usuario 'daniel@gmail.com' está ONLINE!
+[11:24:41] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:24:52] O usuario 'daniel@gmail.com' está ONLINE!
+[11:25:13] Foi criada uma amizade entre 'daniel@gmail.com' e 'lari@gmail.com'.
+[11:26:54] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:34:19] O usuario 'daniel@gmail.com' está ONLINE!
+[11:34:31] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:34:39] O usuario 'daniel@gmail.com' está ONLINE!
+[11:35:2] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:36:41] O usuario 'daniel@gmail.com' está ONLINE!
+[11:36:57] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:37:49] O usuario 'daniel@gmail.com' está ONLINE!
+[11:38:37] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:39:23] O usuario 'daniel@gmail.com' está ONLINE!
+[11:39:28] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:40:6] O usuario 'daniel@gmail.com' está ONLINE!
+[11:40:28] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:40:51] O usuario 'daniel@gmail.com' está ONLINE!
+[11:41:26] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:41:52] O usuario 'daniel@gmail.com' está ONLINE!
+[11:41:58] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:42:7] O usuario 'daniel@gmail.com' está ONLINE!
+[11:42:12] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:42:52] O usuario 'daniel@gmail.com' está ONLINE!
+[11:43:4] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:44:42] O usuario 'daniel@gmail.com' está ONLINE!
+[11:45:11] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:45:23] O usuario 'daniel@gmail.com' está ONLINE!
+[11:45:31] O usuario 'daniel@gmail.com' está OFFLINE!
+[11:45:39] O usuario 'daniel@gmail.com' está ONLINE!
+[11:46:2] Foi criada uma amizade entre 'daniel@gmail.com' e 'dinho@gmail.com'.
+[11:46:10] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:1:56] O usuario 'daniel@gmail.com' está ONLINE!
+[12:2:17] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:4:43] O usuario 'daniel@gmail.com' está ONLINE!
+[12:4:59] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:9:57] ERRO - Tentativa de login em: 'daniel@gmail.com'. MOTIVO: Usuário ou Senha incorretos!
+[12:10:1] O usuario 'daniel@gmail.com' está ONLINE!
+[12:10:21] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:10:54] O usuario 'daniel@gmail.com' está ONLINE!
+[12:11:4] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:12:17] O usuario 'daniel@gmail.com' está ONLINE!
+[12:12:53] Foi criada uma amizade entre 'daniel@gmail.com' e 'teste3@gmail.com'.
+[12:13:24] O usuario 'daniel@gmail.com' está OFFLINE!
