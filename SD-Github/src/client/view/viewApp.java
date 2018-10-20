@@ -280,21 +280,24 @@ public class viewApp extends JPanel {
         panel_chat.setBackground(Color.GREEN);
 
     }
-
-    private void setEnabledButton(JButton b) {
-        jb_cvsas.setEnabled(true);
-        jb_cvsas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-        jb_configs.setEnabled(true);
-        jb_configs.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-        jb_grupos.setEnabled(true);
-        jb_grupos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-        jb_contatos.setEnabled(true);
-        jb_contatos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-        b.setEnabled(false);
-        b.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
-        chat.refresh();
+    
+    private void setEnabledButton(JButton b){
+     panel_addfriend.setVisible(false);
+     panel_friends.setVisible(true);
+     jb_cvsas.setEnabled(true);
+     jb_cvsas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+     jb_configs.setEnabled(true);
+     jb_configs.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+     jb_grupos.setEnabled(true);
+     jb_grupos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+     jb_contatos.setEnabled(true);
+     jb_contatos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+   
+     b.setEnabled(false);
+     b.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
+     chat.refresh();
     }
-
+    
     private void setDefaultColors() {
         jb_configs.setBackground(ChatApp.PRIMARY_DARK);
         jb_contatos.setBackground(ChatApp.PRIMARY_DARK);
@@ -576,7 +579,6 @@ public class viewApp extends JPanel {
         jb_addFriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 panel_friends.setVisible(false);
                 panel_addfriend.setVisible(true);
                 chat.refresh();
@@ -706,7 +708,7 @@ public class viewApp extends JPanel {
         jb_search_addfriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                
                 String email = input_addfriend.getText().toString();
                 LinkedList<Relation> friendships = null;
                 boolean found = false;
