@@ -12,6 +12,8 @@ import common.User;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,8 +22,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,14 +29,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingConstants;
 
 public class viewApp extends JPanel {
-    
-    public static final Dimension DIMENSION_TALKS = new Dimension(315,576);
-    
+
+    public static final Dimension DIMENSION_TALKS = new Dimension(315, 576);
+    public static final Rectangle DIMENSION_PANEL_FRIEND_LIST = new Rectangle(0, 115, 315, 576);
     private static final int SELECTED_EXIT = 1;
     private static final int SELECTED_CHAT = 2;
     private static final int SELECTED_GROUP = 3;
@@ -92,7 +90,8 @@ public class viewApp extends JPanel {
     private void initComponents() {
         panel_configs = new JPanel();
         panel_friends = new JPanel();
-        panel_chat = new JPanel();
+        //panel_chat = new JPanel();
+        panel_chat = new viewChat(user, user);
         panel_addfriend = new JPanel();
         jb_configs = new JButton("");
         jb_contatos = new JButton("");
@@ -265,43 +264,29 @@ public class viewApp extends JPanel {
         lb_not_found.setVisible(false);
         panel_addfriend.setVisible(false);
         
-        panel_talks.setLayout(new FlowLayout(FlowLayout.CENTER));
-        panel_talks.setBounds(0,115,315,576);
-        panel_talks.setBackground(Color.PINK);
-        panel_talks.setBorder(BorderFactory.createMatteBorder(5,5 ,5,5, Color.yellow));
-        panel_talks.setVisible(true);
+        panel_talks.setLayout(new GridLayout(8,1));
+        panel_talks.setBackground(ChatApp.PRIMARY_DARK);
+        scroll_talks.setBorder(null);
         
         scroll_talks.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroll_talks.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scroll_talks.setBounds(0,115,315,576);
-        scroll_talks.setBackground(Color.red);
-        scroll_talks.setVisible(true);
-        
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
-        panel_talks.add(new viewTalk(user));
+        scroll_talks.setBounds(DIMENSION_PANEL_FRIEND_LIST);
         
         panel_friends.add(scroll_talks);
+        
+        panel_talks.add(new viewTalk(user),0,0);
+        panel_talks.add(new viewTalk(user),1,0);
+        panel_talks.add(new viewTalk(user),2,0);
+        panel_talks.add(new viewTalk(user),3,0);
+        panel_talks.add(new viewTalk(user),4,0);
+        panel_talks.add(new viewTalk(user),5,0);
+        panel_talks.add(new viewTalk(user),6,0);
+        panel_talks.add(new viewTalk(user),7,0);
+        
 
         /* CONFIGURAÇÃO DO PAINEL DE CHAT */
         panel_chat.setBackground(Color.GREEN);
+        
     }
 
     private void setDefaultColors() {

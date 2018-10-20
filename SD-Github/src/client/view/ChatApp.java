@@ -25,13 +25,13 @@ public class ChatApp extends JFrame {
     /* CORES DO SISTEMA */
     public static final Color PRIMARY_DARK = new Color(20, 33, 48, 255);
     public static final Color SECONDARY_DARK = new Color(23, 21, 21,255);
-
+        
     public static final Color PRIMARY_GREEN = new Color(0, 255, 153,255);
     public static final Color SECONDARY_GREEN = new Color(27,161,103,255);
 
     public static final Color PRIMARY_GRAY = new Color(163, 173, 184,255);
-
     public static final Color SECONDARY_GRAY = new Color(54,62,71,204);
+    public static final Color TERCIARY_GRAY = new Color(242,247,247,255);
     
     public static final Color WARNING_COLOR = new Color(255,120,120,255);
     private static final int port = 1099;
