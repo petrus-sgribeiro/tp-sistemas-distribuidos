@@ -565,3 +565,25 @@
 [12:12:17] O usuario 'daniel@gmail.com' está ONLINE!
 [12:12:53] Foi criada uma amizade entre 'daniel@gmail.com' e 'teste3@gmail.com'.
 [12:13:24] O usuario 'daniel@gmail.com' está OFFLINE!
+[12:17:45] ERRO - Tentativa de login em: 'fagundesjg@outlook.com'. MOTIVO: Usuário ou Senha incorretos!
+[12:17:48] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:24:40] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:24:47] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:29:55] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:30:34] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:30:53] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:31:10] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:34:2] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:34:10] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:34:41] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:37:43] ERRO - Tentativa de login em: ''. MOTIVO: Usuário ou Senha incorretos!
+[12:37:57] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:38:40] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:38:48] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:48:15] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:48:25] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:48:53] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:52:36] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:53:19] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[12:53:51] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[12:53:55] O usuario 'fagundesjg@outlook.com' está OFFLINE!

@@ -7,6 +7,7 @@ package client.view;
 
 import common.User;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -84,7 +85,7 @@ public class viewTalk extends JPanel{
         
         user_description.setBounds(60,30,200,20);
         user_description.setFont(new Font("Microsoft Tai Le",Font.PLAIN,12));
-        user_description.setForeground(ChatApp.SECONDARY_GRAY);
+        user_description.setForeground(ChatApp.PRIMARY_GRAY);
         user_description.setText("Opa! Esse trabalho...");
 
     }
@@ -108,12 +109,14 @@ public class viewTalk extends JPanel{
 
             @Override
             public void mouseEntered(MouseEvent me) {
-                panel.setBackground(ChatApp.SECONDARY_GRAY);
+                panel.setBackground(ChatApp.HOVER_GRAY);
+                panel.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
                 panel.setBackground(ChatApp.PRIMARY_DARK);
+                panel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
     }

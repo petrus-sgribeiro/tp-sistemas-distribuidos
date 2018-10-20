@@ -9,6 +9,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
 import common.User;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -85,6 +86,7 @@ public class viewApp extends JPanel {
         initComponents();
         configComponents();
         insertActions();
+        jb_cvsas.doClick();
     }
 
     private void initComponents() {
@@ -263,40 +265,36 @@ public class viewApp extends JPanel {
         lb_friend_found.setVisible(false);
         lb_not_found.setVisible(false);
         panel_addfriend.setVisible(false);
-        
-        panel_talks.setLayout(new GridLayout(8,1));
+
+        panel_talks.setLayout(new GridLayout(8, 1));
         panel_talks.setBackground(ChatApp.PRIMARY_DARK);
         scroll_talks.setBorder(null);
-        
+
         scroll_talks.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scroll_talks.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll_talks.setBounds(DIMENSION_PANEL_FRIEND_LIST);
-        
-        panel_friends.add(scroll_talks);
-        
 
+        panel_friends.add(scroll_talks);
 
         /* CONFIGURAÇÃO DO PAINEL DE CHAT */
         panel_chat.setBackground(Color.GREEN);
-         
+
     }
 
-    private void setEnabledButton(JButton b){
-     jb_cvsas.setEnabled(true);
-     jb_cvsas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-     jb_configs.setEnabled(true);
-     jb_configs.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-     jb_grupos.setEnabled(true);
-     jb_grupos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-     jb_contatos.setEnabled(true);
-     jb_contatos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-     b.setEnabled(false);
-     b.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
+    private void setEnabledButton(JButton b) {
+        jb_cvsas.setEnabled(true);
+        jb_cvsas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+        jb_configs.setEnabled(true);
+        jb_configs.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+        jb_grupos.setEnabled(true);
+        jb_grupos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+        jb_contatos.setEnabled(true);
+        jb_contatos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+        b.setEnabled(false);
+        b.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
+        chat.refresh();
     }
-    
-    
-    
-    
+
     private void setDefaultColors() {
         jb_configs.setBackground(ChatApp.PRIMARY_DARK);
         jb_contatos.setBackground(ChatApp.PRIMARY_DARK);
@@ -304,8 +302,8 @@ public class viewApp extends JPanel {
         jb_grupos.setBackground(ChatApp.PRIMARY_DARK);
         jb_sair.setBackground(ChatApp.PRIMARY_DARK);
         jb_user_config.setBackground(ChatApp.PRIMARY_DARK);
+        chat.refresh();
     }
-    
 
     private void insertActions() {
         jb_sair.addActionListener(new ActionListener() {
@@ -317,6 +315,7 @@ public class viewApp extends JPanel {
                     System.out.println("quit - Exception: " + ex.getMessage());
                 }
                 chat.setScreen(new viewLogin(chat));
+                chat.refresh();
             }
         });
 
@@ -339,14 +338,16 @@ public class viewApp extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 jb_sair.setBackground(ChatApp.SECONDARY_GRAY);
-                jb_sair.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
+                jb_sair.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                chat.refresh();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 setDefaultColors();
                 jb_sair.setBackground(ChatApp.PRIMARY_DARK);
-                jb_sair.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.PRIMARY_GREEN));
+                jb_sair.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                chat.refresh();
             }
         });
 
@@ -376,41 +377,45 @@ public class viewApp extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 jb_grupos.setBackground(ChatApp.SECONDARY_GRAY);
+                jb_grupos.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                chat.refresh();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 jb_grupos.setBackground(ChatApp.PRIMARY_DARK);
+                jb_grupos.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                chat.refresh();
             }
         });
 
         jb_contatos.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-           panel_talks.removeAll();                   
-           LinkedList<Relation> friendships = null;
-           String email=null;
-           User friend=null;
-           
-           try {
-                friendships = chat.getServer().getAllFriendships(user.getEmail(), user.getPassword());
-        for(int i=0;i<friendships.size();i++){
-            email = friendships.get(i).getEmail_friend();
-            friend = chat.getServer().searchUsers(email);
-                    
-            panel_talks.add(new viewTalk(friend),i,0);
-            
-        }
-      } catch (RemoteException ex) {
+                panel_talks.removeAll();
+                LinkedList<Relation> friendships = null;
+                String email = null;
+                User friend = null;
+
+                try {
+                    friendships = chat.getServer().getAllFriendships(user.getEmail(), user.getPassword());
+                    for (int i = 0; i < friendships.size(); i++) {
+                        email = friendships.get(i).getEmail_friend();
+                        friend = chat.getServer().searchUsers(email);
+
+                        panel_talks.add(new viewTalk(friend), i, 0);
+
+                    }
+                } catch (RemoteException ex) {
                     System.out.println("Excessão show talks!");
                 }
-            panel_talks.setVisible(false); 
-            lb_friends_title.setText("Contatos");
-            panel_talks.setVisible(true); 
-            setEnabledButton(jb_contatos);
+                panel_talks.setVisible(false);
+                lb_friends_title.setText("Contatos");
+                panel_talks.setVisible(true);
+                setEnabledButton(jb_contatos);
+                chat.refresh();
             }
-        
-            
+
         });
 
         jb_contatos.addMouseListener(new MouseListener() {
@@ -423,7 +428,7 @@ public class viewApp extends JPanel {
             public void mousePressed(MouseEvent e) {
                 jb_contatos.setBackground(ChatApp.SECONDARY_GRAY);
                 jb_contatos.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
-               
+                chat.refresh();
             }
 
             @Override
@@ -433,13 +438,17 @@ public class viewApp extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                
+
                 jb_contatos.setBackground(ChatApp.SECONDARY_GRAY);
+                jb_contatos.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                chat.refresh();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 jb_contatos.setBackground(ChatApp.PRIMARY_DARK);
+                jb_contatos.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                chat.refresh();
             }
         });
 
@@ -469,11 +478,15 @@ public class viewApp extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 jb_configs.setBackground(ChatApp.SECONDARY_GRAY);
+                jb_configs.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                chat.refresh();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 jb_configs.setBackground(ChatApp.PRIMARY_DARK);
+                jb_configs.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                chat.refresh();
             }
         });
 
@@ -503,25 +516,29 @@ public class viewApp extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 jb_user_config.setBackground(ChatApp.SECONDARY_GRAY);
+                jb_user_config.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                chat.refresh();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 jb_user_config.setBackground(ChatApp.PRIMARY_DARK);
+                jb_user_config.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                chat.refresh();
             }
         });
 
         jb_cvsas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-             panel_talks.removeAll();
-            panel_talks.setVisible(false);
-            lb_friends_title.setText("Conversas");
-            panel_talks.setVisible(true); 
-            setEnabledButton(jb_cvsas);
+                panel_talks.removeAll();
+                panel_talks.setVisible(false);
+                lb_friends_title.setText("Conversas");
+                panel_talks.setVisible(true);
+                setEnabledButton(jb_cvsas);
+                chat.refresh();
             }
-        
-            
+
         });
 
         jb_cvsas.addMouseListener(new MouseListener() {
@@ -533,7 +550,7 @@ public class viewApp extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 jb_cvsas.setBackground(ChatApp.SECONDARY_GRAY);
-                
+                chat.refresh();
             }
 
             @Override
@@ -544,11 +561,15 @@ public class viewApp extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 jb_cvsas.setBackground(ChatApp.SECONDARY_GRAY);
+                jb_cvsas.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                chat.refresh();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 jb_cvsas.setBackground(ChatApp.PRIMARY_DARK);
+                jb_cvsas.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                chat.refresh();
             }
         });
 
@@ -558,6 +579,7 @@ public class viewApp extends JPanel {
 
                 panel_friends.setVisible(false);
                 panel_addfriend.setVisible(true);
+                chat.refresh();
             }
 
         });
@@ -580,12 +602,12 @@ public class viewApp extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-
+                jb_addFriend.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-
+                jb_addFriend.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
 
@@ -600,6 +622,7 @@ public class viewApp extends JPanel {
                 lb_friend_img_perf.setVisible(false);
                 lb_friend_found.setVisible(false);
                 lb_not_found.setVisible(false);
+                chat.refresh();
             }
 
         });
@@ -622,12 +645,12 @@ public class viewApp extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-
+                jb_close_addfriend.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-
+                jb_close_addfriend.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
 
@@ -650,7 +673,36 @@ public class viewApp extends JPanel {
                 }
             }
         });
+        
+        jb_search_addfriend.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+            }
 
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                jb_search_addfriend.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                chat.refresh();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jb_search_addfriend.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                chat.refresh();
+            }
+        });
+        
         jb_search_addfriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -702,6 +754,7 @@ public class viewApp extends JPanel {
                         lb_not_found.setVisible(true);
                     }
                 }
+                chat.refresh();
             }
 
         });
@@ -731,6 +784,7 @@ public class viewApp extends JPanel {
                 } catch (RemoteException ex) {
                     System.out.println("RegisterUser - Exception: " + ex.getMessage());
                 }
+                chat.refresh();
             }
         });
     }
