@@ -75,7 +75,7 @@ public class viewTalk extends JPanel{
         panel.setPreferredSize(new Dimension(315, 50));
         panel.setBackground(ChatApp.PRIMARY_DARK);
         
-        icon_profile_picture.setIcon(new ImageIcon("icones/galgadot_.jpg"));
+        icon_profile_picture.setIcon(new ImageIcon("icones/usuario_sem_foto_.png"));
         icon_profile_picture.setBounds(5,5,40,40);
         
         user_name.setBounds(60,5, 200,20);
@@ -94,7 +94,7 @@ public class viewTalk extends JPanel{
         panel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
-
+                
             }
 
             @Override

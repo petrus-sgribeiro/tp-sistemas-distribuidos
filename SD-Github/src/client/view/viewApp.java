@@ -730,7 +730,7 @@ public class viewApp extends JPanel {
                         }
                         if (found) {
                             lb_not_found.setVisible(false);
-                            lb_friend_img_perf.setIcon(new ImageIcon("icones/galgadot_.jpg"));
+                            lb_friend_img_perf.setIcon(new ImageIcon("icones/usuario_sem_foto_.png"));
                             lb_friend_found.setText(newfriend.getNickname());
                             jb_add_friend_found.setVisible(true);
                             lb_friend_img_perf.setVisible(true);
@@ -741,7 +741,7 @@ public class viewApp extends JPanel {
                             jb_add_friend_found.setEnabled(false);
                         } else if (newfriend != null) {
                             lb_not_found.setVisible(false);
-                            lb_friend_img_perf.setIcon(new ImageIcon("icones/galgadot_.jpg"));
+                            lb_friend_img_perf.setIcon(new ImageIcon("icones/usuario_sem_foto_.png"));
                             lb_friend_found.setText(newfriend.getNickname());
                             jb_add_friend_found.setVisible(true);
                             lb_friend_img_perf.setVisible(true);
