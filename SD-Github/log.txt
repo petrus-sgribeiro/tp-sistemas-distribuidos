@@ -306,3 +306,20 @@
 [12:46:32] O usuario 'fagundesjg@outlook.com' está OFFLINE!
 [12:49:44] O usuario 'fagundesjg@outlook.com' está ONLINE!
 [12:49:53] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[13:6:29] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[13:6:36] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[13:6:58] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[13:7:2] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[13:9:15] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[13:9:29] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[13:9:56] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[13:10:1] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[13:11:20] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[13:11:29] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[13:13:0] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[13:13:9] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[13:13:17] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[13:14:17] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[13:14:39] Usuario 'tiago@gmail.com' cadastrado com sucesso!
+[13:14:47] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[13:15:0] Foi criada uma amizade entre 'fagundesjg@outlook.com' e 'tiago@gmail.com'.

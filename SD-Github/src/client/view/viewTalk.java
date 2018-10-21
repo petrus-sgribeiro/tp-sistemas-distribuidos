@@ -35,9 +35,11 @@ public class viewTalk extends JPanel{
     private JLabel icon_profile_picture, icon_status;
     private JLabel lb_date;
     private Date date;
+    private viewApp app;
 
-    public viewTalk(ChatApp chat, User user) {
+    public viewTalk(viewApp app, User user) {
         super();
+        this.app = app;
         this.panel = null;
         this.user = user;
         this.user_name = null;
@@ -94,12 +96,14 @@ public class viewTalk extends JPanel{
         panel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent me) {
-                
+                app.setPanel_chat(new viewChat(app,user));
+                System.out.println(user.getEmail() + " " + user.getNickname());
+                app.refresh();
             }
 
             @Override
             public void mousePressed(MouseEvent me) {
-
+                
             }
 
             @Override

@@ -45,12 +45,12 @@ public class viewChat extends JPanel {
     private JTextField input_message;
     private JButton jb_send, jb_index;
     private int scroll_height = 0;
-    private ChatApp chat;
+    private viewApp app;
 
-    public viewChat(ChatApp chat, User destiny) {
-        this.chat = chat;
+    public viewChat(viewApp app, User destiny) {
+        this.app = app;
         this.destiny = destiny;
-        this.origin = chat.getUser();
+        this.origin = app.getUser();
         initComponents();
         configComponents();
         insertComponents();
@@ -61,15 +61,15 @@ public class viewChat extends JPanel {
         String message = input_message.getText().toString();
         if (message.length() > 0) {
             panel_chat_messages.add(new viewMessage(viewMessage.USER_ORIGIN, message, new Date()));
-            chat.getServer().sendMessage(new Message(origin, destiny, message, new Date(), 3));
+            app.getServer().sendMessage(new Message(origin, destiny, message, new Date(), 3));
             input_message.setText("");
-            chat.refresh();
+            app.refresh();
         }
     }
 
     private void receiveMessage(Message msg) {
         panel_chat_messages.add(new viewMessage(viewMessage.USER_DESTINATION, msg.getMsg(), msg.getTimestamp()));
-        chat.refresh();
+        app.refresh();
     }
 
     private void initComponents() {

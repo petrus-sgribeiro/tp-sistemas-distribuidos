@@ -2,6 +2,7 @@ package client.view;
 
 import common.Relation;
 import common.ServerMessage;
+import common.ServerMessageInterface;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,7 +12,6 @@ import javax.swing.JPanel;
 import common.User;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -77,11 +77,14 @@ public class viewApp extends JPanel {
     private JButton jb_add_friend_found;
     private JLabel lb_not_found;
     
+    private viewApp app;
+    
     /* Components da tela de chat */
     private JPanel panel_chat;
 
     public viewApp(ChatApp chat) {
         super();
+        this.app = this;
         this.chat = chat;
         this.user = chat.getUser();
         initComponents();
@@ -93,8 +96,7 @@ public class viewApp extends JPanel {
     private void initComponents() {
         panel_configs = new JPanel();
         panel_friends = new JPanel();
-        //panel_chat = new JPanel();
-        panel_chat = new viewChat(chat, user);
+        panel_chat = new viewChat(this, user);
         panel_addfriend = new JPanel();
         jb_configs = new JButton("");
         jb_contatos = new JButton("");
@@ -407,7 +409,7 @@ public class viewApp extends JPanel {
                         email = friendships.get(i).getEmail_friend();
                         friend = chat.getServer().searchUser(email);
 
-                        panel_talks.add(new viewTalk(chat,friend), i, 0);
+                        panel_talks.add(new viewTalk(app,friend), i, 0);
 
                     }
                 } catch (RemoteException ex) {
@@ -790,5 +792,37 @@ public class viewApp extends JPanel {
                 chat.refresh();
             }
         });
+    }
+
+    public JPanel getPanel_chat() {
+        return panel_chat;
+    }
+
+    public void setPanel_chat(JPanel panel_chat) {
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridy = 0;
+        c.gridx = 2;
+        c.weightx = 0.6875;
+        this.remove(this.panel_chat);
+        this.panel_chat = panel_chat;
+        this.add(panel_chat,c);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    public void refresh()
+    {
+        chat.refresh();
+    }
+    
+    public ServerMessageInterface getServer() {
+        return chat.getServer();
     }
 }

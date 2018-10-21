@@ -169,6 +169,5 @@ public class ChatApp extends JFrame {
 
     public void setUser(User user) {
         this.user = user;
-    }
-   
+    } 
 }
