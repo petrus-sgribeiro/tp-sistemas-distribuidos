@@ -17,8 +17,6 @@ import common.ServerMessageInterface;
 import common.User;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ChatApp extends JFrame {
 
@@ -31,9 +29,12 @@ public class ChatApp extends JFrame {
 
     public static final Color PRIMARY_GRAY = new Color(167,183,195,255);
     public static final Color SECONDARY_GRAY = new Color(54,62,71,204);
-    public static final Color TERCIARY_GRAY = new Color(242,247,247,255);
+    
+    public static final Color PRIMARY_WHITE = new Color(198,226,226,255);
+    public static final Color SECONDARY_WHITE = new Color(242,247,247,255);
     public static final Color HOVER_GRAY = new Color(65,65,65,255);
     
+    public static final Color BORDER_BLUE = new Color(198,226,226,255);
     public static final Color WARNING_COLOR = new Color(255,120,120,255);
     private static final int port = 1099;
 
@@ -56,7 +57,6 @@ public class ChatApp extends JFrame {
         insertActions();
         start();
         connect();
-       
     }
 
     public ServerMessageInterface getServer() {

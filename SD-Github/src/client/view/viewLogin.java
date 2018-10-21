@@ -280,9 +280,7 @@ button_register.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
                 case ServerMessage.LOGIN_SUCCESS:
                     msg = "Logado com sucesso!";
                     
-                    User user = new User();
-                    user.setEmail(email);
-                    user.setPassword(password);
+                    User user = chat.getServer().getUser(email, password);
                     chat.setUser(user);
                     
                     label_error_msg.setVisible(false);

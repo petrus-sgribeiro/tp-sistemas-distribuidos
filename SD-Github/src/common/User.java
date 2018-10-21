@@ -22,13 +22,14 @@ public class User implements Serializable {
     private String cpf;
     private String matricula;
     private String dataNascimento;
+    private String description;
     private int sexo;
     private String nickname;
     private boolean online;
     private Date created_at;
     private Date updated_at;
 
-    public User(String email, String password, String cpf, String matricula, String dataNascimento, int sexo,
+    public User(String email, String password, String cpf, String matricula, String dataNascimento, String description, int sexo,
             String nickname, boolean online, Date created_at, Date updated_at) {
         this.email = email;
         this.password = password;
@@ -40,6 +41,7 @@ public class User implements Serializable {
         this.online = online;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.description = description;
     }
 
     public User() {
@@ -53,6 +55,7 @@ public class User implements Serializable {
         this.online = false;
         this.created_at = null;
         this.updated_at = null;
+        this.description = "Olá! Vamos conversar? ;)";
     }
 
     @Override
@@ -65,12 +68,23 @@ public class User implements Serializable {
                 "Cpf: " + this.cpf + "\n"
                 + "Matrícula: " + this.matricula + "\n"
                 + "Data Nascimento: " + this.dataNascimento + "\n"
+                + "Descrição: " + this.getDescription() + "\n"
                 + "Sexo: " + sexo + "\n"
                 + "Status: " +  status + "\n"
                 + "Created at: " + this.created_at.toString() + "\n"
                 + "Updated at: " + updated;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
+    
     public boolean isOnline() {
         return online;
     }

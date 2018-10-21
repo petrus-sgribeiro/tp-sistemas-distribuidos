@@ -54,6 +54,7 @@ public class ChatDatabase {
                 + "  cpf VARCHAR(64) NOT NULL ,\n"
                 + "  matricula VARCHAR(64) NOT NULL UNIQUE,\n"
                 + "  data_nascimento VARCHAR(64) NOT NULL,\n"
+                + "  description VARCHAR(64) NOT NULL,\n"
                 + "  sexo INTEGER NOT NULL,\n"
                 + "  nickname VARCHAR(64) NOT NULL UNIQUE,\n"
                 + "  online BOOLEAN NOT NULL,\n"
@@ -72,10 +73,10 @@ public class ChatDatabase {
     }
 
     public void updateUser(User user) {
-        String sql = "UPDATE users SET email = ? , pass = ? , cpf = ? , matricula = ? , data_nascimento = ? , sexo = ? , nickname = ?, online = ?, updated_at = DATETIME('now') WHERE email = ?";
+        String sql = "UPDATE users SET email = ? , pass = ? , cpf = ? , matricula = ? , data_nascimento = ? , description = ? , sexo = ? , nickname = ?, online = ?, updated_at = DATETIME('now') WHERE email = ?";
         Connection conn;
         PreparedStatement pstmt;
-        String email, pass, matricula, cpf, data_nascimento, nickname;
+        String email, pass, matricula, cpf, data_nascimento, nickname, description;
         int sexo;
         Date created_at;
         boolean online;
@@ -89,10 +90,11 @@ public class ChatDatabase {
             pstmt.setString(3, user.getCpf());
             pstmt.setString(4, user.getMatricula());
             pstmt.setString(5, user.getDataNascimento());
-            pstmt.setInt(6, user.getSexo());
-            pstmt.setString(7, user.getNickname());
-            pstmt.setBoolean(8, user.isOnline());
-            pstmt.setString(9, user.getEmail());
+            pstmt.setString(6, user.getDescription());
+            pstmt.setInt(7, user.getSexo());
+            pstmt.setString(8, user.getNickname());
+            pstmt.setBoolean(9, user.isOnline());
+            pstmt.setString(10, user.getEmail());
             pstmt.executeUpdate();
             conn.close();
 
@@ -104,7 +106,7 @@ public class ChatDatabase {
 
     public LinkedList<User> loadUsers() {
         LinkedList<User> list = new LinkedList<User>();
-        String sql = "SELECT email,pass,cpf,matricula,data_nascimento,sexo,nickname,online,created_at,updated_at FROM users";
+        String sql = "SELECT email,pass,cpf,matricula,data_nascimento,description,sexo,nickname,online,created_at,updated_at FROM users";
         Connection conn;
         Statement stmt;
         ResultSet rs;
@@ -113,7 +115,7 @@ public class ChatDatabase {
             conn = DriverManager.getConnection(DB_URL + DB_USERS);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            String email, pass, matricula, cpf, data_nascimento, nickname, update;
+            String email, pass, matricula, cpf, data_nascimento, nickname, update,description;
             int sexo;
             Date created_at, updated_at = null;
             boolean online;
@@ -124,6 +126,7 @@ public class ChatDatabase {
                 cpf = rs.getString("cpf");
                 matricula = rs.getString("matricula");
                 data_nascimento = rs.getString("data_nascimento");
+                description = rs.getString("description");
                 sexo = rs.getInt("sexo");
                 nickname = rs.getString("nickname");
                 online = rs.getBoolean("online");
@@ -132,7 +135,7 @@ public class ChatDatabase {
                 if (update != null) {
                     updated_at = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(update);
                 }
-                list.add(new User(email, pass, cpf, matricula, data_nascimento, sexo, nickname, online, created_at, updated_at));
+                list.add(new User(email, pass, cpf, matricula, data_nascimento,description, sexo, nickname, online, created_at, updated_at));
             }
             conn.close();
         } catch (SQLException e) {
@@ -145,7 +148,7 @@ public class ChatDatabase {
     }
 
     public User getUser(String user_email, String user_pass) {
-        String sql = "SELECT email,pass,cpf,matricula,data_nascimento,sexo,nickname,online,created_at,updated_at FROM users";
+        String sql = "SELECT email,pass,cpf,matricula,data_nascimento,description,sexo,nickname,online,created_at,updated_at FROM users";
         Connection conn;
         Statement stmt;
         ResultSet rs;
@@ -154,7 +157,7 @@ public class ChatDatabase {
             conn = DriverManager.getConnection(DB_URL + DB_USERS);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            String email, pass, matricula, cpf, data_nascimento, nickname, update;
+            String email, pass, matricula, cpf, data_nascimento, nickname, update, description;
             int sexo;
             Date created_at, updated_at = null;
             boolean online;
@@ -165,6 +168,7 @@ public class ChatDatabase {
                 cpf = rs.getString("cpf");
                 matricula = rs.getString("matricula");
                 data_nascimento = rs.getString("data_nascimento");
+                description = rs.getString("description");
                 sexo = rs.getInt("sexo");
                 nickname = rs.getString("nickname");
                 online = rs.getBoolean("online");
@@ -176,7 +180,7 @@ public class ChatDatabase {
 
                 if (email.equals(user_email) && pass.equals(user_pass)) {
                     conn.close();
-                    return new User(email, pass, cpf, matricula, data_nascimento, sexo, nickname, online, created_at, updated_at);
+                    return new User(email, pass, cpf, matricula, data_nascimento,description, sexo, nickname, online, created_at, updated_at);
                 }
 
             }
@@ -192,7 +196,7 @@ public class ChatDatabase {
     }
 
     public User getUser(String user_email) {
-        String sql = "SELECT email,sexo,nickname,online FROM users";
+        String sql = "SELECT email,description,sexo,nickname,online FROM users";
         Connection conn;
         Statement stmt;
         ResultSet rs;
@@ -201,19 +205,20 @@ public class ChatDatabase {
             conn = DriverManager.getConnection(DB_URL + DB_USERS);
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
-            String email, nickname;
+            String email, nickname,description;
             int sexo;
             boolean online;
 
             while (rs.next()) {
                 email = rs.getString("email");
+                description = rs.getString("description");
                 sexo = rs.getInt("sexo");
                 nickname = rs.getString("nickname");
                 online = rs.getBoolean("online");
 
                 if (email.equals(user_email)) {
                     conn.close();
-                    return new User(email, null, null, null, null, sexo, nickname, online, null, null);
+                    return new User(email, null, null, null, null,description, sexo, nickname, online, null, null);
                 }
             }
 
@@ -226,7 +231,7 @@ public class ChatDatabase {
     }
 
     public boolean insertUser(User user) {
-        String sql = "INSERT INTO users(email,pass,cpf,matricula,data_nascimento,sexo,nickname,online,created_at) VALUES (?,?,?,?,?,?,?,?,DATETIME('now'))";
+        String sql = "INSERT INTO users(email,pass,cpf,matricula,data_nascimento,description,sexo,nickname,online,created_at) VALUES (?,?,?,?,?,?,?,?,?,DATETIME('now'))";
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL + DB_USERS);
@@ -236,9 +241,10 @@ public class ChatDatabase {
             pstmt.setString(3, user.getCpf());
             pstmt.setString(4, user.getMatricula());
             pstmt.setString(5, user.getDataNascimento());
-            pstmt.setInt(6, user.getSexo());
-            pstmt.setString(7, user.getNickname());
-            pstmt.setBoolean(8, user.isOnline());
+            pstmt.setString(6, user.getDescription());
+            pstmt.setInt(7, user.getSexo());
+            pstmt.setString(8, user.getNickname());
+            pstmt.setBoolean(9, user.isOnline());
             pstmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {

@@ -156,7 +156,7 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
     }
 
     @Override
-    public synchronized User searchUsers(String email) throws RemoteException{
+    public synchronized User searchUser(String email) throws RemoteException{
 
         User tmp = chatDatabase.getUser(email);
 
@@ -206,6 +206,16 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
            
            return friendships;
        }
+    }
+
+    @Override
+    public User getUser(String login, String password) throws RemoteException {
+        return chatDatabase.getUser(login, password);
+    }
+
+    @Override
+    public User getUser(String login) throws RemoteException {
+        return chatDatabase.getUser(login);
     }
     
     

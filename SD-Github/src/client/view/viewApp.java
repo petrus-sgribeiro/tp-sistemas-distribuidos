@@ -76,7 +76,8 @@ public class viewApp extends JPanel {
     private JLabel lb_friend_found;
     private JButton jb_add_friend_found;
     private JLabel lb_not_found;
-
+    
+    /* Components da tela de chat */
     private JPanel panel_chat;
 
     public viewApp(ChatApp chat) {
@@ -93,7 +94,7 @@ public class viewApp extends JPanel {
         panel_configs = new JPanel();
         panel_friends = new JPanel();
         //panel_chat = new JPanel();
-        panel_chat = new viewChat(user, user);
+        panel_chat = new viewChat(chat, user);
         panel_addfriend = new JPanel();
         jb_configs = new JButton("");
         jb_contatos = new JButton("");
@@ -277,7 +278,7 @@ public class viewApp extends JPanel {
         panel_friends.add(scroll_talks);
 
         /* CONFIGURAÇÃO DO PAINEL DE CHAT */
-        panel_chat.setBackground(Color.GREEN);
+        panel_chat.setBackground(ChatApp.PRIMARY_DARK);
 
     }
     
@@ -404,9 +405,9 @@ public class viewApp extends JPanel {
                     friendships = chat.getServer().getAllFriendships(user.getEmail(), user.getPassword());
                     for (int i = 0; i < friendships.size(); i++) {
                         email = friendships.get(i).getEmail_friend();
-                        friend = chat.getServer().searchUsers(email);
+                        friend = chat.getServer().searchUser(email);
 
-                        panel_talks.add(new viewTalk(friend), i, 0);
+                        panel_talks.add(new viewTalk(chat,friend), i, 0);
 
                     }
                 } catch (RemoteException ex) {
@@ -716,7 +717,7 @@ public class viewApp extends JPanel {
 
                 try {
                     friendships = chat.getServer().getAllFriendships(user.getEmail(), user.getPassword());
-                    newfriend = chat.getServer().searchUsers(email);
+                    newfriend = chat.getServer().searchUser(email);
                 } catch (RemoteException ex) {
                     System.out.println("Excessão search add friend!");
                 }

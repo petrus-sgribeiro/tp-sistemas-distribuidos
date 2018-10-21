@@ -36,7 +36,7 @@ public class viewTalk extends JPanel{
     private JLabel lb_date;
     private Date date;
 
-    public viewTalk(User user) {
+    public viewTalk(ChatApp chat, User user) {
         super();
         this.panel = null;
         this.user = user;
@@ -86,7 +86,7 @@ public class viewTalk extends JPanel{
         user_description.setBounds(60,30,200,20);
         user_description.setFont(new Font("Microsoft Tai Le",Font.PLAIN,12));
         user_description.setForeground(ChatApp.PRIMARY_GRAY);
-        user_description.setText("Opa! Esse trabalho...");
+        user_description.setText(user.getDescription());
 
     }
 

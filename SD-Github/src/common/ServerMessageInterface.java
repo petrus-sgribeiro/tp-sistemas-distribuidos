@@ -21,7 +21,9 @@ public interface ServerMessageInterface extends Remote{
     public abstract int logout(String email, String password) throws RemoteException;
     public abstract int isConnected(String email) throws RemoteException;
     public abstract int disconnectAll() throws RemoteException;
-    public abstract User searchUsers(String email) throws RemoteException;
+    public abstract User searchUser(String email) throws RemoteException;
     public abstract int registerRelation (Relation relation) throws RemoteException;
     public abstract LinkedList<Relation> getAllFriendships(String email, String pass) throws RemoteException;
+    public abstract User getUser(String login, String password) throws RemoteException;
+    public abstract User getUser(String login) throws RemoteException;
 }
