@@ -391,8 +391,10 @@ public class ChatDatabase {
                 try {
                     fr = new FileReader(TALKS_URL + current);
                     br = new BufferedReader(fr);
-                    while((line = br.readLine()) != null)
+                    line = br.readLine();
+                    while(line != null)
                     {
+                        System.out.println(line);
                         splited = line.split("\t");
                         message = new Message();
                         

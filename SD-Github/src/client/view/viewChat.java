@@ -24,6 +24,8 @@ import java.awt.event.MouseWheelListener;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -51,6 +53,7 @@ public class viewChat extends JPanel {
     private ServerMessageInterface cliente;
     private Message msg;
     private Thread thread = null;
+    private boolean online = false;
 
     public viewChat(viewApp app, User destiny) {
         this.app = app;
@@ -61,6 +64,27 @@ public class viewChat extends JPanel {
         insertComponents();
         insertActions();
         connect();
+    }
+
+    private void updateScreenItems() {
+        try {
+            destiny = app.getServer().getUser(destiny.getEmail());
+            System.out.println(destiny.getEmail() + " " + destiny.isOnline());
+            
+            if (destiny.isOnline()) {
+                online = true;
+                destiny_status.setText("Online");
+                destiny_icon_status.setIcon(new ImageIcon("icones/online-icon_.png"));
+            } else {
+                online = false;
+                destiny_status.setText("Offline");
+                destiny_icon_status.setIcon(new ImageIcon("icones/offline-icon_.png"));
+            }
+
+            app.refresh();
+        } catch (RemoteException ex) {
+
+        }
     }
 
     private boolean connect() {
@@ -74,19 +98,20 @@ public class viewChat extends JPanel {
                         try {
                             //System.out.println("Thread rodando..." + destiny.getNickname());
                             Thread.sleep(1000);
-                            msg = cliente.receiveMessage(destiny,origin);
+                            msg = cliente.receiveMessage(destiny, origin);
                             if (msg != null) {
                                 receiveMessage(msg);
                             }
                         } catch (Exception ex) {
 
                         }
+                        updateScreenItems();
                     }
                 }
 
             });
             thread.start();
-            
+
             return true;
         } catch (Exception e) {
             cliente = null;
@@ -103,12 +128,12 @@ public class viewChat extends JPanel {
     public void setThread(Thread thread) {
         this.thread = thread;
     }
-        
+
     private void sendMessage() throws RemoteException {
         String message = input_message.getText().toString();
         if (message.length() > 0) {
             panel_chat_messages.add(new viewMessage(viewMessage.USER_ORIGIN, message, new Date()));
-            System.out.println("Mensagem enviada.\nOrigem: " + origin.getEmail() + "\nDestino: " + destiny.getEmail()+ "\nConteudo: " + message);
+            System.out.println("Mensagem enviada.\nOrigem: " + origin.getEmail() + "\nDestino: " + destiny.getEmail() + "\nConteudo: " + message);
             app.getServer().sendMessage(new Message(origin, destiny, message, new Date(), 3));
             input_message.setText("");
             app.refresh();
@@ -141,6 +166,7 @@ public class viewChat extends JPanel {
     }
 
     private void configComponents() {
+        online = false;
         this.setBackground(ChatApp.SECONDARY_WHITE);
         this.setLayout(new GridBagLayout());
 
@@ -158,10 +184,10 @@ public class viewChat extends JPanel {
 
         destiny_status.setFont(new Font("Arial", Font.PLAIN, 11));
         destiny_status.setBounds(451, 28, 400, 40);
-        destiny_status.setText("Online");
+        destiny_status.setText("");
         destiny_status.setForeground(Color.gray);
 
-        destiny_icon_status.setIcon(new ImageIcon("icones/online-icon_.png"));
+        //destiny_icon_status.setIcon(new ImageIcon("icones/online-icon_.png"));
         destiny_icon_status.setBounds(441, 44, 7, 7);
 
         panel_send.setBackground(ChatApp.SECONDARY_WHITE);
@@ -229,16 +255,14 @@ public class viewChat extends JPanel {
 
         panel_chat.add(scrollpane, 0, 0);
         scrollpane.setViewportView(panel_chat_messages);
-        
-        if(app.getMessages() != null)
-        for(Message m: app.getMessages())
-        {
-            if(m.getDestination().getEmail().equals(origin.getEmail()) && m.getOrigin().getEmail().equals(destiny.getEmail()))
-            {
-                panel_chat_messages.add(new viewMessage(viewMessage.USER_DESTINATION, m.getMsg(), m.getTimestamp()));
-            }else if(m.getDestination().getEmail().equals(destiny.getEmail()) && m.getOrigin().getEmail().equals(origin.getEmail()))
-            {
-                panel_chat_messages.add(new viewMessage(viewMessage.USER_ORIGIN, m.getMsg(), m.getTimestamp()));
+
+        if (app.getMessages() != null) {
+            for (Message m : app.getMessages()) {
+                if (m.getDestination().getEmail().equals(origin.getEmail()) && m.getOrigin().getEmail().equals(destiny.getEmail())) {
+                    panel_chat_messages.add(new viewMessage(viewMessage.USER_DESTINATION, m.getMsg(), m.getTimestamp()));
+                } else if (m.getDestination().getEmail().equals(destiny.getEmail()) && m.getOrigin().getEmail().equals(origin.getEmail())) {
+                    panel_chat_messages.add(new viewMessage(viewMessage.USER_ORIGIN, m.getMsg(), m.getTimestamp()));
+                }
             }
         }
     }

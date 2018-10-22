@@ -61,12 +61,6 @@ public class ChatApp extends JFrame {
         insertActions();
         start();
         connect();
-        
-        try {
-            server.disconnectAll();
-        } catch (RemoteException ex) {
-            Logger.getLogger(ChatApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public ServerMessageInterface getServer() {

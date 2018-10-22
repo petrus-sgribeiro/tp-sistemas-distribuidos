@@ -733,3 +733,62 @@
 [12:24:40] Todos usuários foram desconectados do servidor!
 [12:24:45] O usuario 'tiago@gmail.com' está ONLINE!
 [12:24:59] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:15:37] Todos usuários foram desconectados do servidor!
+[15:15:45] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[15:16:26] Todos usuários foram desconectados do servidor!
+[15:16:31] O usuario 'tiago@gmail.com' está ONLINE!
+[15:17:44] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[15:18:33] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[15:18:33] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:19:14] Todos usuários foram desconectados do servidor!
+[15:19:21] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[15:33:2] Todos usuários foram desconectados do servidor!
+[15:33:8] O usuario 'tiago@gmail.com' está ONLINE!
+[15:34:16] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:34:18] Todos usuários foram desconectados do servidor!
+[15:34:25] O usuario 'tiago@gmail.com' está ONLINE!
+[15:35:33] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:35:36] Todos usuários foram desconectados do servidor!
+[15:35:43] O usuario 'tiago@gmail.com' está ONLINE!
+[15:36:50] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:36:52] Todos usuários foram desconectados do servidor!
+[15:36:57] O usuario 'tiago@gmail.com' está ONLINE!
+[15:38:5] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:38:14] Todos usuários foram desconectados do servidor!
+[15:38:18] O usuario 'tiago@gmail.com' está ONLINE!
+[15:38:36] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:41:36] Todos usuários foram desconectados do servidor!
+[15:42:1] Todos usuários foram desconectados do servidor!
+[15:42:6] O usuario 'tiago@gmail.com' está ONLINE!
+[15:42:15] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:42:47] Todos usuários foram desconectados do servidor!
+[15:42:52] O usuario 'tiago@gmail.com' está ONLINE!
+[15:42:58] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:44:21] Todos usuários foram desconectados do servidor!
+[15:44:26] O usuario 'tiago@gmail.com' está ONLINE!
+[15:44:50] Todos usuários foram desconectados do servidor!
+[15:44:56] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[15:45:25] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[15:46:4] Todos usuários foram desconectados do servidor!
+[15:46:10] O usuario 'tiago@gmail.com' está ONLINE!
+[15:47:32] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:47:40] Todos usuários foram desconectados do servidor!
+[15:47:45] O usuario 'tiago@gmail.com' está ONLINE!
+[15:48:7] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:48:12] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[15:49:3] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[15:49:5] Todos usuários foram desconectados do servidor!
+[15:49:11] O usuario 'tiago@gmail.com' está ONLINE!
+[15:49:49] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:49:52] Todos usuários foram desconectados do servidor!
+[15:49:56] O usuario 'tiago@gmail.com' está ONLINE!
+[15:51:27] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:51:29] Todos usuários foram desconectados do servidor!
+[15:51:34] O usuario 'tiago@gmail.com' está ONLINE!
+[15:52:18] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:52:20] Todos usuários foram desconectados do servidor!
+[15:52:25] O usuario 'tiago@gmail.com' está ONLINE!
+[15:52:36] O usuario 'tiago@gmail.com' está OFFLINE!
+[15:53:4] Todos usuários foram desconectados do servidor!
+[15:53:11] O usuario 'tiago@gmail.com' está ONLINE!
+[15:53:19] O usuario 'tiago@gmail.com' está OFFLINE!

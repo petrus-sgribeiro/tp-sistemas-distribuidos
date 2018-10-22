@@ -95,7 +95,8 @@ public class Message implements Serializable{
                 "Destination: " + this.destination.getEmail()+ "\n" +
                 "Message: " + this.msg + "\n" + 
                 "Date: " + this.timestamp.toString() + "\n" +
-                "UTC: " + this.UTC;
+                "UTC: " + this.UTC + "\n" + 
+                "----------------------------";
     }
     
 }
