@@ -1,5 +1,6 @@
 package client.view;
 
+import common.Message;
 import common.Relation;
 import common.ServerMessage;
 import common.ServerMessageInterface;
@@ -21,8 +22,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -76,21 +80,24 @@ public class viewApp extends JPanel {
     private JLabel lb_friend_found;
     private JButton jb_add_friend_found;
     private JLabel lb_not_found;
-    
-    private viewApp app;
-    
-    /* Components da tela de chat */
-    private JPanel panel_chat;
 
+    private viewApp app;
+
+    /* Components da tela de chat */
+    private viewChat panel_chat;
+    private LinkedList<Message> messages = null;
+    
     public viewApp(ChatApp chat) {
         super();
         this.app = this;
         this.chat = chat;
         this.user = chat.getUser();
+        
         initComponents();
         configComponents();
         insertActions();
         jb_cvsas.doClick();
+
     }
 
     private void initComponents() {
@@ -283,24 +290,24 @@ public class viewApp extends JPanel {
         panel_chat.setBackground(ChatApp.PRIMARY_DARK);
 
     }
-    
-    private void setEnabledButton(JButton b){
-     panel_addfriend.setVisible(false);
-     panel_friends.setVisible(true);
-     jb_cvsas.setEnabled(true);
-     jb_cvsas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-     jb_configs.setEnabled(true);
-     jb_configs.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-     jb_grupos.setEnabled(true);
-     jb_grupos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-     jb_contatos.setEnabled(true);
-     jb_contatos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
-   
-     b.setEnabled(false);
-     b.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
-     chat.refresh();
+
+    private void setEnabledButton(JButton b) {
+        panel_addfriend.setVisible(false);
+        panel_friends.setVisible(true);
+        jb_cvsas.setEnabled(true);
+        jb_cvsas.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+        jb_configs.setEnabled(true);
+        jb_configs.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+        jb_grupos.setEnabled(true);
+        jb_grupos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+        jb_contatos.setEnabled(true);
+        jb_contatos.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, ChatApp.SECONDARY_GREEN));
+
+        b.setEnabled(false);
+        b.setBorder(BorderFactory.createMatteBorder(0, 7, 0, 0, ChatApp.SECONDARY_GREEN));
+        chat.refresh();
     }
-    
+
     private void setDefaultColors() {
         jb_configs.setBackground(ChatApp.PRIMARY_DARK);
         jb_contatos.setBackground(ChatApp.PRIMARY_DARK);
@@ -409,7 +416,7 @@ public class viewApp extends JPanel {
                         email = friendships.get(i).getEmail_friend();
                         friend = chat.getServer().searchUser(email);
 
-                        panel_talks.add(new viewTalk(app,friend), i, 0);
+                        panel_talks.add(new viewTalk(app, friend), i, 0);
 
                     }
                 } catch (RemoteException ex) {
@@ -678,21 +685,21 @@ public class viewApp extends JPanel {
                 }
             }
         });
-        
+
         jb_search_addfriend.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                
+
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                
+
             }
 
             @Override
@@ -707,11 +714,11 @@ public class viewApp extends JPanel {
                 chat.refresh();
             }
         });
-        
+
         jb_search_addfriend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 String email = input_addfriend.getText().toString();
                 LinkedList<Relation> friendships = null;
                 boolean found = false;
@@ -798,7 +805,19 @@ public class viewApp extends JPanel {
         return panel_chat;
     }
 
-    public void setPanel_chat(JPanel panel_chat) {
+    public void setPanel_chat(viewChat panel_chat) {
+
+        if (panel_chat.getThread() != null) {
+            this.panel_chat.getThread().stop();
+            this.panel_chat.setThread(null);
+        }
+        
+        try {
+            messages = app.getServer().loadTalks(this.user);
+        } catch (RemoteException ex) {
+            System.out.println("Exception load talks: " + ex.getMessage());
+        }
+
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridy = 0;
@@ -806,7 +825,7 @@ public class viewApp extends JPanel {
         c.weightx = 0.6875;
         this.remove(this.panel_chat);
         this.panel_chat = panel_chat;
-        this.add(panel_chat,c);
+        this.add(panel_chat, c);
     }
 
     public User getUser() {
@@ -816,13 +835,21 @@ public class viewApp extends JPanel {
     public void setUser(User user) {
         this.user = user;
     }
-    
-    public void refresh()
-    {
+
+    public void refresh() {
         chat.refresh();
     }
-    
+
     public ServerMessageInterface getServer() {
         return chat.getServer();
     }
+
+    public LinkedList<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(LinkedList<Message> messages) {
+        this.messages = messages;
+    }
+
 }

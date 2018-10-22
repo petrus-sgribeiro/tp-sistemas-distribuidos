@@ -29,6 +29,7 @@ public class viewMessage extends JPanel {
     private JLabel label_hour;
     private JPanel panel_message;
     private int MESSAGE_Y = 35;
+    private int MESSAGE_X = 700;
 
     private String formatMessage(String message)
     {
@@ -40,7 +41,7 @@ public class viewMessage extends JPanel {
             {
                 str += "<br>";
                 MESSAGE_Y += 15;
-                this.setPreferredSize(new Dimension(855, MESSAGE_Y));
+                this.setPreferredSize(new Dimension(MESSAGE_X, MESSAGE_Y));
             }
             str += message.charAt(i);
             i++;
@@ -53,8 +54,8 @@ public class viewMessage extends JPanel {
         super();
 
         this.setBackground(new Color(0, 0, 0, 0));
-        this.setPreferredSize(new Dimension(855, MESSAGE_Y));
-
+        this.setPreferredSize(new Dimension(MESSAGE_X, MESSAGE_Y));
+        
         SimpleDateFormat format = new SimpleDateFormat("hh:mm");
 
         label_message = new JLabel(formatMessage(message));

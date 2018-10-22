@@ -5,8 +5,16 @@
  */
 package server.dao;
 
+import common.Message;
 import common.Relation;
 import common.User;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.DriverManager;
@@ -14,9 +22,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +37,8 @@ import java.util.LinkedList;
 public class ChatDatabase {
 
     private static final String DB_USERS = "users.db";
-    private static final String DB_URL = "jdbc:sqlite:C:/sqlite/db/";
+    private static final String DB_URL = "jdbc:sqlite:C:/chat-app/sqlite/db/";
+    private static final String TALKS_URL = "C:/chat-app/talks/";
 
     public ChatDatabase() {
         createNewDatabase(DB_USERS);
@@ -324,5 +337,91 @@ public class ChatDatabase {
         }
 
         return listR;
+    }
+    
+    public void saveMessage(Message message)
+    {
+        File file = null;
+        
+        if(message.getOrigin().getEmail().compareTo(message.getDestination().getEmail()) < 0)
+        {
+            file = new File(TALKS_URL + message.getOrigin().getEmail() + "-" + message.getDestination().getEmail() + ".txt");
+        }else file = new File(TALKS_URL + message.getDestination().getEmail() + "-" + message.getOrigin().getEmail() + ".txt");
+        
+        if(!file.exists())
+        {
+            try {
+                file.createNewFile();
+            } catch (IOException ex) {
+                System.out.println("Falha ao criar arquivo: " + ex.getMessage());
+            }
+        }
+        
+        FileWriter fw;
+        BufferedWriter bw;
+        String str = message.getOrigin().getEmail() + "\t" + message.getDestination().getEmail() + "\t" + message.getMsg() + "\t" + message.getMsg_type() + "\t" + message.getTimestamp().toString() + "\t" + message.getUTC() + "\n";
+        
+        try {
+            fw = new FileWriter(file,true);
+            bw = new BufferedWriter(fw);
+            bw.write(str);
+            bw.close();
+        } catch (IOException ex) {
+            System.out.println("Falha ao salvar no arquivo: " + ex.getMessage());
+        }
+    }
+    
+    public LinkedList<Message> loadMessages(User user)
+    {
+        LinkedList<Message> messages = new LinkedList<Message>();
+        File file = new File(TALKS_URL);
+        File current = null;
+        File []listFiles = file.listFiles();
+        FileReader fr;
+        BufferedReader br;
+        String line;
+        String []splited;
+        Message message;
+        
+        for(int i = 0; i < listFiles.length; i++)
+        {
+            if(listFiles[i].getName().contains(user.getEmail()))
+            {
+               current = new File(listFiles[i].getName());
+                try {
+                    fr = new FileReader(TALKS_URL + current);
+                    br = new BufferedReader(fr);
+                    while((line = br.readLine()) != null)
+                    {
+                        splited = line.split("\t");
+                        message = new Message();
+                        
+                        message.setOrigin(new User());
+                        message.getOrigin().setEmail(splited[0]);
+                        
+                        message.setDestination(new User());
+                        message.getDestination().setEmail(splited[1]);
+                        
+                        message.setMsg(splited[2]);
+                        message.setMsg_type(Integer.parseInt(splited[3]));
+                        message.setTimestamp(new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy",Locale.US).parse(splited[4]));
+                        message.setUTC(Integer.parseInt(splited[5]));
+                        
+                        messages.add(message);
+                        line = br.readLine();
+                    }
+                    br.close();
+                } catch (FileNotFoundException ex) {
+                    System.out.println("FileNotFoundException: " + ex.getMessage());
+                } catch (IOException ex) {
+                   System.out.println("IOException: " + ex.getMessage());
+                } catch (ParseException ex) {
+                    System.out.println("ParseException: " + ex.getMessage());
+                }
+               
+            }
+        }
+        
+        return messages;
     }
 }

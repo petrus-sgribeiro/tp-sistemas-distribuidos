@@ -16,7 +16,7 @@ import java.util.LinkedList;
 public interface ServerMessageInterface extends Remote{
     public abstract int registerUser(User user) throws RemoteException;
     public abstract int sendMessage(Message msg) throws RemoteException;
-    public abstract Message receiveMessage(User origin) throws RemoteException;
+    public abstract Message receiveMessage(User from,User to) throws RemoteException;
     public abstract int login(String email, String password) throws RemoteException;
     public abstract int logout(String email, String password) throws RemoteException;
     public abstract int isConnected(String email) throws RemoteException;
@@ -26,4 +26,5 @@ public interface ServerMessageInterface extends Remote{
     public abstract LinkedList<Relation> getAllFriendships(String email, String pass) throws RemoteException;
     public abstract User getUser(String login, String password) throws RemoteException;
     public abstract User getUser(String login) throws RemoteException;
+    public abstract LinkedList<Message> loadTalks(User user) throws RemoteException;
 }

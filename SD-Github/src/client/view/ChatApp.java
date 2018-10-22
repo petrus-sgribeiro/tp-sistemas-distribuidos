@@ -17,6 +17,8 @@ import common.ServerMessageInterface;
 import common.User;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ChatApp extends JFrame {
 
@@ -42,11 +44,13 @@ public class ChatApp extends JFrame {
     public static final Font FONT_IMPACT = new Font("Impact", Font.BOLD, 40);
 
     public static final Dimension APP_WINDOW_SIZE = new Dimension(1280, 720);
+    public static final int PORT = 1099;
     
     private JPanel screen;
     private JPanel currentWindow;
     private ServerMessageInterface server = null;
     private User user;
+    
 
     public ChatApp() {
         super();
@@ -57,6 +61,12 @@ public class ChatApp extends JFrame {
         insertActions();
         start();
         connect();
+        
+        try {
+            server.disconnectAll();
+        } catch (RemoteException ex) {
+            Logger.getLogger(ChatApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public ServerMessageInterface getServer() {

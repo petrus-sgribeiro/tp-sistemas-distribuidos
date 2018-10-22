@@ -6,8 +6,6 @@
 package common;
 
 import java.io.Serializable;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Date;
 
 /**
@@ -93,8 +91,8 @@ public class Message implements Serializable{
 
     @Override
     public String toString() {
-        return "Origin: " + this.origin.getNickname() + "\n" +
-                "Destination: " + this.destination.getNickname() + "\n" +
+        return "Origin: " + this.origin.getEmail()+ "\n" +
+                "Destination: " + this.destination.getEmail()+ "\n" +
                 "Message: " + this.msg + "\n" + 
                 "Date: " + this.timestamp.toString() + "\n" +
                 "UTC: " + this.UTC;

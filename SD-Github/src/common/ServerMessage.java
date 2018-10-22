@@ -72,16 +72,15 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
 
     @Override
     public synchronized int sendMessage(Message msg) throws RemoteException {
-        System.out.println(msg.toString());
-        return (messages.add(msg)) ? 1 : 0;
+        return (messages.add(msg))? 1: 0;
     }
 
     @Override
-    public synchronized Message receiveMessage(User origin) throws RemoteException {
+    public synchronized Message receiveMessage(User from, User to) throws RemoteException {
 
         for (Message m : messages) {
-
-            if (m.getDestination().getEmail().equals(origin.getEmail())) {
+            if (m.getOrigin().getEmail().equals(from.getEmail()) && m.getDestination().getEmail().equals(to.getEmail())) {
+                chatDatabase.saveMessage(m);
                 messages.remove(m);
                 return m;
             }
@@ -156,7 +155,7 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
     }
 
     @Override
-    public synchronized User searchUser(String email) throws RemoteException{
+    public synchronized User searchUser(String email) throws RemoteException {
 
         User tmp = chatDatabase.getUser(email);
 
@@ -178,8 +177,8 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
         }
 
         if (chatDatabase.insertRelation(relation)) {
-            System.out.println("Foi criada uma amizade entre '"+relation.getEmail_user()+"' e '" + relation.getEmail_friend() + "'.");
-            LogInfo.add("Foi criada uma amizade entre '"+relation.getEmail_user()+"' e '" + relation.getEmail_friend() + "'.");
+            System.out.println("Foi criada uma amizade entre '" + relation.getEmail_user() + "' e '" + relation.getEmail_friend() + "'.");
+            LogInfo.add("Foi criada uma amizade entre '" + relation.getEmail_user() + "' e '" + relation.getEmail_friend() + "'.");
             return REGISTER_FRIEND_ADD_SUCCESSFULLY;
         } else {
             return 0;
@@ -187,25 +186,22 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
     }
 
     @Override
-    public synchronized LinkedList<Relation> getAllFriendships(String email, String pass) throws RemoteException
-    {
-       User user =  chatDatabase.getUser(email, pass);
-       if(user == null) return null;
-       else
-       {
-           LinkedList<Relation> relations = chatDatabase.loadRelations();
-           LinkedList<Relation> friendships = new LinkedList<Relation>();
-           
-           for(Relation r : relations)
-           {
-               if(r.getEmail_user().equals(email))
-               {
-                   friendships.add(new Relation(email,r.getEmail_friend()));
-               }
-           }
-           
-           return friendships;
-       }
+    public synchronized LinkedList<Relation> getAllFriendships(String email, String pass) throws RemoteException {
+        User user = chatDatabase.getUser(email, pass);
+        if (user == null) {
+            return null;
+        } else {
+            LinkedList<Relation> relations = chatDatabase.loadRelations();
+            LinkedList<Relation> friendships = new LinkedList<Relation>();
+
+            for (Relation r : relations) {
+                if (r.getEmail_user().equals(email)) {
+                    friendships.add(new Relation(email, r.getEmail_friend()));
+                }
+            }
+
+            return friendships;
+        }
     }
 
     @Override
@@ -217,7 +213,12 @@ public class ServerMessage extends UnicastRemoteObject implements ServerMessageI
     public User getUser(String login) throws RemoteException {
         return chatDatabase.getUser(login);
     }
-    
-    
+
+    @Override
+    public LinkedList<Message> loadTalks(User user) throws RemoteException {
+        LinkedList<Message> messages = chatDatabase.loadMessages(user);
+
+        return messages;
+    }
 
 }
