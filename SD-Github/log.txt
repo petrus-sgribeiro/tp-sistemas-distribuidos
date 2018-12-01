@@ -792,3 +792,16 @@
 [15:53:4] Todos usuários foram desconectados do servidor!
 [15:53:11] O usuario 'tiago@gmail.com' está ONLINE!
 [15:53:19] O usuario 'tiago@gmail.com' está OFFLINE!
+[22:25:25] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[22:26:36] Usuario 'lucas@gmail.com' cadastrado com sucesso!
+[22:26:42] O usuario 'lucas@gmail.com' está ONLINE!
+[22:26:56] Foi criada uma amizade entre 'fagundesjg@outlook.com' e 'lucas@gmail.com'.
+[22:27:8] Foi criada uma amizade entre 'lucas@gmail.com' e 'fagundesjg@outlook.com'.
+[22:29:17] O usuario 'lucas@gmail.com' está OFFLINE!
+[22:29:24] O usuario 'fagundesjg@outlook.com' está OFFLINE!
+[14:29:8] ERRO - Tentativa de login em: 'fagundesjg@outlook.com'. MOTIVO: Usuário ou Senha incorretos!
+[14:29:10] ERRO - Tentativa de login em: 'fagundesjg@outlook.com'. MOTIVO: Usuário ou Senha incorretos!
+[14:29:13] O usuario 'fagundesjg@outlook.com' está ONLINE!
+[14:29:35] O usuario 'vividuarte31@gmail.com' está ONLINE!
+[14:40:53] O usuario 'vividuarte31@gmail.com' está OFFLINE!
+[14:41:21] O usuario 'fagundesjg@outlook.com' está OFFLINE!
