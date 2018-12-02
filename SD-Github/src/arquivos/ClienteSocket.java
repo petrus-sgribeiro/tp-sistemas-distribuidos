@@ -42,12 +42,12 @@ public class ClienteSocket extends javax.swing.JFrame {
         jButtonArquivo = new javax.swing.JButton();
         jLabelTamanho = new javax.swing.JLabel();
         jButtonEnviar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        /*jLabel2 = new javax.swing.JLabel();
         jTextFieldIP = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldDiretorio = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldPorta = new javax.swing.JTextField();
+        jTextFieldPorta = new javax.swing.JTextField();*/
   
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jLabel1.setText("Arquivo Carregado");
@@ -71,11 +71,11 @@ public class ClienteSocket extends javax.swing.JFrame {
             }
         });
   
-        jLabel2.setText("IP");
+        /*jLabel2.setText("IP");
   
         jLabel3.setText("Diret\u00f3rio Dest.");
   
-        jLabel4.setText("Porta");
+        jLabel4.setText("Porta");*/
   
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,7 +89,7 @@ public class ClienteSocket extends javax.swing.JFrame {
                     .addComponent(jButtonEnviar)
                     .addComponent(jButtonArquivo)
                     .addComponent(jLabelTamanho)
-                    .addGroup(layout.createSequentialGroup()
+                    /*.addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addComponent(jTextFieldIP, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -104,7 +104,8 @@ public class ClienteSocket extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextFieldDiretorio, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37))
+                .addGap(37, 37, 37*/
+                ))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +115,7 @@ public class ClienteSocket extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                /*.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,7 +126,7 @@ public class ClienteSocket extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldDiretorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(16, 16, 16)*/
                 .addComponent(jButtonArquivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelTamanho)
@@ -166,7 +167,7 @@ private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {
                                   arquivo.setTamanhoKB(kbSize);
                                   arquivo.setIpDestino(jTextFieldIP.getText());
                                   arquivo.setPortaDestino(jTextFieldPorta.getText());
-                                 arquivo.setDiretorioDestino(jTextFieldDiretorio.getText().trim());
+                                  arquivo.setDiretorioDestino(jTextFieldDiretorio.getText().trim());
                         }
                          
                } catch (Exception e) {
@@ -230,12 +231,14 @@ private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {
     private javax.swing.JButton jButtonArquivo;
     private javax.swing.JButton jButtonEnviar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelTamanho;
+    private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabelTamanho;
+    private javax.swing.JLabel jLabel4;  
     private javax.swing.JTextField jTextFieldDiretorio;
-    private javax.swing.JTextField jTextFieldIP;
-    private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldPorta;
+    private javax.swing.JTextField jTextFieldIP;
+    
+    
 }
